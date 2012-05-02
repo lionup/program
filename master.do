@@ -15,10 +15,6 @@ clear
 do transition
 clear
 
-* generate matched monthly wage files from merged yearly files for copla estimation 
-do copula1
-clear
-
 * estimate the parameters of the copula between hourly wages of t and t+1, and seasonally adjust them
 do copula1
 clear

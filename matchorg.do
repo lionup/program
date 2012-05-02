@@ -136,7 +136,7 @@ program define match2
   }
   
   sort `sort' 
-  saveold ../result/merg`1', replace
+  saveold ../basic_extract/org_merg`1', replace
   clear
 end 
 

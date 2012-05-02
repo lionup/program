@@ -40,7 +40,7 @@ program define copula3
 	*/ & `3' != 199503 & `3' != 199504 & `3' != 199505 & `3' != 199506 /*
 	*/ & `3' != 199507 & `3' != 199508) {
       clear 
-      use ../result/merg`1' if month == `2' 
+      use ../basic_extract/org_merg`1' if month == `2' 
 	  * keep only the observations have wage information in both months
       keep if w_ln_no != . & mw_ln_no != . 
 	  keep w_ln_no mw_ln_no

@@ -49,7 +49,7 @@ program define transition3
     
     else {
       clear 
-	  use ../result/merg`1' if month == `2' 
+	  use ../basic_extract/org_merg`1' if month == `2' 
 	  * find the wage decile for each observation
       xtile decile = w_ln_no [pweight = orgwgt], nq(10)
       xtile mdecile = mw_ln_no [pweight = morgwgt], nq(10)
