@@ -91,7 +91,7 @@ forvalues i = 1/6 {
   rename flowUE`i' flowsUE`i'
 }
 
-order _all, alpha
+order _all, seq
 
 sort date
 gen t = tm(1976m1) + _n - 1
@@ -103,7 +103,7 @@ gen qtr = int((month - 1) / 3) + 1
 
 order year qtr month date t, first
 sort year qtr month date t
-saveold ../result/basic_edu.dta, replace
+saveold ../result/edu_basic.dta, replace
 
 
 log close

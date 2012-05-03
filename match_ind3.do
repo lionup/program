@@ -88,7 +88,7 @@ while `x' <= 201108 {
   gen year = int( date /100 )
   gen month = int( (date - year*100) )
   gen qtr = int((month - 1) / 3) + 1
-  order _all, alpha
+  order _all, seq
   order year qtr month date, first
 
   if `x' != 197601{

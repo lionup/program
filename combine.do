@@ -69,6 +69,7 @@ saveold ../result/final.dta, replace
 
 
 *merge the following series by education levels: unemployment, E2U, U2E, J2J
+clear
 use ../result/edu_ur.dta
 forvalues i = 1/6 {
   label var ur`i'  "unemployment rate of education level `i'"
@@ -79,15 +80,15 @@ merge 1:1 `sort' using ../result/edu_basic.dta
 drop _merge
 sort `sort'
 forvalues i = 1/6 {
-  label var flowEU`i' "E2U flows of education level `i'"
-  label var flowUE`i' "U2E flows of education level `i'"
+  label var flowsEU`i' "E2U flows of education level `i'"
+  label var flowsUE`i' "U2E flows of education level `i'"
 }
 
 merge 1:1 `sort' using ../result/edu_j2j.dta
 drop _merge
 sort `sort'
 forvalues i = 1/6 {
-  label var flowJ2J`i' "J2J flows of education level `i'"
+  label var flowsJ2J`i' "J2J flows of education level `i'"
 }
 
 
