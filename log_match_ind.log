@@ -1,0 +1,4923 @@
+-------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /data/uctprgu/cps/program/log_match_ind.log
+  log type:  text
+ opened on:   2 May 2012, 22:32:04
+
+. 
+. local x = 199702
+
+. while `x' <= 201108 {
+  2. 
+.   use ../basic_extract/cps`x', clear
+  3. 
+.   if `x' <= 198212 {
+  4.     destring ind, gen(ind70)
+  5.         recode ind70 (-1 29 58 78 267 399 499 599 699 719 767 
+> 799 817 899 = .)
+  6.         sort ind70
+  7.         merge ind70 using ind70.dta
+  8.         tab _merge
+  9.         drop if _merge == 2 
+ 10.         drop ind70 _merge
+ 11.         summ ind7090
+ 12.   }
+ 13.   if `x' <= 199112 & `x' >= 198301 {
+ 14.         destring ind, gen(ind80)
+ 15.     recode ind80 (-1 131 991 992 = .) 
+ 16.         sort ind80
+ 17.         merge ind80 using ind80.dta
+ 18.         tab _merge
+ 19.         drop if _merge == 2 
+ 20.         drop ind80 _merge
+ 21.         summ ind7090
+ 22.   }
+ 23.   if `x' >= 199201 & `x' <= 200212  {
+ 24.     replace ind = "-1" if ind == "-1-" | ind == "1-1" | ind ==
+>  "1 1"
+ 25.         destring ind, gen(ind90)
+ 26.     recode ind90 (-1 131 991 992 = .) 
+ 27.         sort ind90
+ 28.         merge ind90 using ind90.dta
+ 29.         tab _merge
+ 30.         drop if _merge == 2 
+ 31.         drop ind90 _merge
+ 32.         summ ind7090
+ 33.   }
+ 34.   if `x' >= 200301 {
+ 35.         destring ind, gen(ind02)
+ 36.     recode ind02 (-1 = .) (5591 5592 = 5590) (4285 = 4590) (66
+> 72 6675 = 6780) (6692 6695 = 6790) (9670 / 9990 = .), gen(ind90)
+ 37.     replace ind90 = int(ind90 / 10) if ind90 > 0
+ 38.         #delimit ; 
+delimiter now ;
+.     recode ind90 
+> (17 = 10)
+> (18 = 11)
+> (19 = 31)
+> (27 = 230)
+> (28 = 32)
+> (29 = 30)
+> (37 = 42)
+> (38 = 41)
+> (39 = 40)
+> (47 = 50)
+> (48 = -1)
+> (49 = -1)
+> (57 = 450)
+> (58 = 451)
+> (59 = 452)
+> (67 = 470)
+> (68 = 471)
+> (69 = 472)
+> (77 = 60)
+> (107 = 110)
+> (108 = 112)
+> (109 = 102)
+> (117 = 101)
+> (118 = 100)
+> (119 = 610)
+> (127 = 111)
+> (128 = 121)
+> (129 = 122)
+> (137 = 120)
+> (139 = 130)
+> (147 = 142)
+> (148 = 142)
+> (149 = 140)
+> (157 = 141)
+> (159 = 150)
+> (167 = 132)
+> (168 = 151)
+> (169 = 152)
+> (177 = 221)
+> (179 = 222)
+> (187 = 160)
+> (188 = 162)
+> (189 = 161)
+> (199 = 172)
+> (207 = 200)
+> (209 = 201)
+> (217 = 180)
+> (218 = 191)
+> (219 = 181)
+> (227 = 190)
+> (228 = 182)
+> (229 = 192)
+> (237 = 212)
+> (238 = 210)
+> (239 = 211)
+> (247 = 261)
+> (248 = 252)
+> (249 = 250)
+> (257 = 251)
+> (259 = 262)
+> (267 = 270)
+> (268 = 272)
+> (269 = 280)
+> (277 = 271)
+> (278 = 291)
+> (279 = 281)
+> (287 = 282)
+> (288 = 290)
+> (289 = 300)
+> (297 = 292)
+> (298 = 300)
+> (299 = 301)
+> (307 = 311)
+> (308 = 312)
+> (309 = 321)
+> (317 = 320)
+> (318 = 310)
+> (319 = 331)
+> (329 = 332)
+> (336 = 322)
+> (337 = 341)
+> (338 = 371)
+> (339 = 342)
+> (347 = 340)
+> (349 = 342)
+> (357 = 351)
+> (358 = 352)
+> (359 = 362)
+> (367 = 361)
+> (368 = 360)
+> (369 = 370)
+> (377 = 231)
+> (378 = 231)
+> (379 = 232)
+> (387 = 241)
+> (389 = 242)
+> (396 = 372)
+> (397 = 390)
+> (398 = 391)
+> (399 = 392)
+> (407 = 500)
+> (408 = 501)
+> (409 = 502)
+> (417 = 510)
+> (418 = 511)
+> (419 = 512)
+> (426 = 521)
+> (427 = 530)
+> (428 = 531)
+> (429 = 532)
+> (437 = 540)
+> (438 = 541)
+> (439 = 542)
+> (447 = 550)
+> (448 = 551)
+> (449 = 552)
+> (456 = 560)
+> (457 = 561)
+> (458 = 562)
+> (459 = 571)
+> (467 = 612)
+> (468 = 622)
+> (469 = 620)
+> (477 = 631)
+> (478 = 632)
+> (479 = 633)
+> (487 = 580)
+> (488 = 581)
+> (489 = 582)
+> (497 = 601)
+> (498 = 611)
+> (499 = 650)
+> (507 = 642)
+> (508 = 682)
+> (509 = 621)
+> (517 = 623)
+> (518 = 630)
+> (519 = 660)
+> (527 = 651)
+> (528 = 662)
+> (529 = 640)
+> (537 = 652)
+> (538 = 591)
+> (539 = 600)
+> (547 = 681)
+> (548 = 652)
+> (549 = 682)
+> (557 = 661)
+> (558 = 682)
+> (559 = 663)
+> (567 = 670)
+> (568 = 672)
+> (569 = 671)
+> (579 = 691)
+> (607 = 421)
+> (608 = 400)
+> (609 = 420)
+> (617 = 410)
+> (618 = 401)
+> (619 = 402)
+> (627 = 422)
+> (628 = 401)
+> (629 = 432)
+> (637 = 412)
+> (638 = 410)
+> (639 = 411)
+> (647 = 171)
+> (648 = 172)
+> (649 = 732)
+> (657 = 800)
+> (659 = 741)
+> (667 = 440)
+> (668 = 441)
+> (669 = 442)
+> (677 = 852)
+> (678 = 741)
+> (679 = 732)
+> (687 = 700)
+> (688 = 701)
+> (689 = 702)
+> (697 = 710)
+> (699 = 711)
+> (707 = 712)
+> (708 = 742)
+> (717 = 801)
+> (718 = 741)
+> (719 = 741)
+> (727 = 841)
+> (728 = 890)
+> (729 = 882)
+> (737 = 741)
+> (738 = 732)
+> (739 = 892)
+> (746 = 891)
+> (747 = 721)
+> (748 = 12)
+> (749 = 893)
+> (757 = -1)
+> (758 = 731)
+> (759 = 741)
+> (767 = 432)
+> (768 = 740)
+> (769 = 722)
+> (777 = 20)
+> (778 = 741)
+> (779 = 471)
+> (786 = 842)
+> (787 = 850)
+> (788 = 851)
+> (789 = 860)
+> (797 = 812)
+> (798 = 820)
+> (799 = 821)
+> (807 = 822)
+> (808 = 830)
+> (809 = 812)
+> (817 = 840)
+> (818 = 840)
+> (819 = 831)
+> (827 = 832)
+> (829 = 870)
+> (837 = 871)
+> (838 = 871)
+> (839 = 861)
+> (847 = 862)
+> (856 = 810)
+> (857 = 872)
+> (858 = 802)
+> (859 = 810)
+> (866 = 762)
+> (867 = 770)
+> (868 = 641)
+> (869 = 641)
+> (877 = 751)
+> (878 = 750)
+> (879 = 752)
+> (887 = 760)
+> (888 = 760)
+> (889 = 782)
+> (897 = 780)
+> (898 = 772)
+> (899 = 772)
+> (907 = 771)
+> (908 = 781)
+> (909 = 791)
+> (916 = 880)
+> (917 = 881)
+> (918 = 873)
+> (919 = 881)
+> (929 = 761)
+> (937 = 900)
+> (938 = 921)
+> (939 = 901)
+> (947 = 910)
+> (948 = 922)
+> (949 = 930)
+> (957 = 931)
+> (959 = 932)
+> ;
+ 39.     #delimit cr
+delimiter now cr
+. 
+.         sort ind90
+ 40.         merge ind90 using ind90.dta
+ 41.         tab _merge
+ 42.         drop if _merge == 2 
+ 43.         drop ind90 ind02 _merge
+ 44.         summ ind7090
+ 45.   }
+ 46. 
+. 
+. 
+.   *label consistent three-digit codes ind7090 
+.   label var ind7090 "consistent three-digit industry"
+ 47.   #delimit ;
+delimiter now ;
+.   label define ind7090
+> 11 "Ag production crops & livestock"
+> 20 "Ag services, except horticultural"
+> 21 "Horticultural services"
+> 30 "Forestry"
+> 31 "Fishing, hunting and trapping"
+> 40 "Metal mining"
+> 41 "Coal mining"
+> 42 "Crude petroleum and natural gas extraction"
+> 50 "Nonmetallic mining and quarrying, except fuel"
+> 60 "Construction"
+> 100 "Meat products"
+> 101 "Dairy products"
+> 102 "Canned and preserved fuits and vegetables"
+> 110 "Gain mill products"
+> 111 "Bakery products"
+> 112 "Sugar and confectionary products"
+> 120 "Beverage industries"
+> 121 "Misc. food preparations and kindred products"
+> 122 "Not specified food industries"
+> 130 "Tobacco manufactures"
+> 132 "Knitting mills"
+> 140 "Dyeing and finishing textiles, except wool and knit goods"
+> 141 "Floor coverings, except hard surfaces"
+> 142 "Yarn, thread, and fabric mills"
+> 150 "Misc. textile mill products"
+> 151 "Apparel and accessories, except knit"
+> 152 "Misc. fabricated textile products"
+> 160 "Pulp, paper, and paperboard mills"
+> 161 "Misc. paper and pulp products"
+> 162 "Paperboard containers and boxes"
+> 171 "Newspaper publishing and printing"
+> 172 "Printing, publishing, and allied industries except newspaper
+> s"
+> 180 "Plastics, synthetics, and resins"
+> 181 "Drugs"
+> 182 "Soaps and cosmetics"
+> 190 "Paints, varnishes, and related products"
+> 191 "Agricultural chemicals"
+> 192 "Industrial and miscellaneous chemicals"
+> 200 "Petroleum refining"
+> 201 "Misc. petroleum and coal products"
+> 211 "Other rubber products, and plastics footwear and belting + T
+> ires & Inner tubes"
+> 212 "Misc. plastic products"
+> 220 "Leather tanning and finishing"
+> 221 "Footwear, except rubber and plastic"
+> 222 "Leather products, except footwear"
+> 230 "Logging"
+> 231 "Sawmills, planning mills, and millwork"
+> 241 "Misc. wood products"
+> 242 "Furniture and fixtures"
+> 250 "Glass and glass products"
+> 251 "Cement, concrete, and gypsum, and plaster products"
+> 252 "Structural clay products"
+> 261 "Pottery and related products"
+> 262 "Misc. nonmetallic mineral and stone products"
+> 270 "Blast furnaces, steelworks, rolling and finishing mills"
+> 271 "Iron and stell foundaries"
+> 272 "Primary aluminum industries"
+> 280 "Other primary metal industries"
+> 281 "Cutlery, handtools, and other hardware"
+> 282 "Fabricated structural metal products"
+> 290 "Screw machine products"
+> 291 "Metal forgings and stampings"
+> 300 "Misc. fabricated metal products"
+> 301 "Not specified metal industries"
+> 310 "Engines and turbines"
+> 311 "Farm machinery and equipment"
+> 312 "Construction and material handling machines"
+> 320 "Metalworking machinery"
+> 321 "Office and accounting machines"
+> 322 "Electronic computing equipment"
+> 331 "Machinery, except electrical, n.e.c."
+> 332 "Not specified machinery"
+> 340 "Household appliances"
+> 341 "Radio, T.V. and communication equipment"
+> 342 "Eletrical machinery, equipment, and supplies, n.e.c."
+> 350 "Not specified eletrical machinery, equipment, and supplies"
+> 351 "Transporation equipment"
+> 360 "Ship and boat building and repairing"
+> 361 "Railroad locamotives and equipment"
+> 362 "Guided missiles, space vehicles, and parts, Ordnance, and Ai
+> rcraft and parts"
+> 370 "Cycles and misc. transporation equipment & Wood buildings an
+> d mobile homes"
+> 371 "Scientific and controlling instruments"
+> 372 "Optical and health services supplies"
+> 380 "Photographic equipment and supplies"
+> 381 "Watches, clocks, and clockwork operated devices"
+> 391 "Misc. manufacturing industries and toys, amusement and sport
+> ing goods"
+> 392 "Not specified manufacturing industries"
+> 400 "Railroads"
+> 401 "Bus service and urban transit"
+> 402 "Taxicab service"
+> 410 "Trucking service"
+> 411 "Warehousing and storage"
+> 412 "U.S. Postal Service"
+> 420 "Water transportation"
+> 421 "Air transportation"
+> 422 "Pipe lines, except natural gas"
+> 432 "Services incidental to transportation"
+> 441 "Telephone (wire and radio)"
+> 442 "Telegraph and misc. communication services & Radio televisio
+> n and broadcasting"
+> 460 "Electric light and power"
+> 461 "Gas and steam supply systems"
+> 462 "Eletric and gas, and other combinations"
+> 470 "Water supply and irrigation"
+> 471 "Sanitary services"
+> 472 "Not specified utilities"
+> 500 "Motor vehicles and equipment"
+> 502 "Lumber and construction materials"
+> 511 "Metals and minerals, except petroleum"
+> 512 "Electrical goods"
+> 521 "Hardware, plumbing and heating supplies"
+> 531 "Scrap and waste materials"
+> 540 "Paper and paper products"
+> 541 "Drugs, chemicals, and allied products"
+> 542 "Apparel, fabrics, and notions"
+> 550 "Groceries and related products"
+> 551 "Farm products, raw materials"
+> 552 "Petroleum products"
+> 560 "Alcoholic beverages"
+> 561 "Farm supplies & Retail nurseries and garden stores"
+> 562 "Misc. wholesale, durable AND non-durable goods. Sporting goo
+> ds, toys, and hobby goods. Furniture and home furnishings. Machin
+> ery, equipment and supplies."
+> 571 "Not specified wholesale trade"
+> 580 "Lumber and building material retailing"
+> 581 "Hardware stores"
+> 591 "Deparment stores & Mail order houses"
+> 592 "Variety stores"
+> 600 "Misc. general merchandise stores and Sewing, needlework, and
+>  piece good stores"
+> 601 "Grocery stores"
+> 602 "Diary product stores"
+> 610 "Retail bakeries"
+> 611 "Food stores, n.e.c"
+> 612 "Motor vehicle dealers"
+> 620 "Auto and home supply stores"
+> 621 "Gasoline service stations"
+> 622 "Misc. vehicle dealers and Mobile home dealers"
+> 630 "Apparel and accessory stores, except shoe"
+> 631 "Shoe stores"
+> 632 "Furniture and home furnishings stores"
+> 640 "Household appliances, TV, and radio stores"
+> 641 "Eating and drinking places"
+> 642 "Drug stores"
+> 650 "Liquor stores"
+> 660 "Jewelry stores"
+> 670 "Vending machine operators"
+> 671 "Direct selling establishments"
+> 672 "Fuel and ice dealers"
+> 681 "Retail florists"
+> 682 "Misc. retail stores. Sporting goods, bicycles and hobby stor
+> es. Book and stationery stores"
+> 691 "Not specified retail trade"
+> 700 "Banking"
+> 702 "Credit agencies, n.e.c.. Savings and Loan associations"
+> 710 "Security, commodity brokerage, and investment companies"
+> 711 "Insurance"
+> 712 "Real estate. including real estate-insurance-law offices"
+> 721 "Advertising"
+> 722 "Services to dwellings and other buildings"
+> 731 "Personlle supply services"
+> 732 "Misc. personal services. Business management and consulting.
+>  Commercial research, development and testing labs. Funeral servi
+> ces and creamtories. Misc. p.rofessional and related services. No
+> ncommercial educational and scientific research"
+> 740 "Computer and data processing services"
+> 741 "Detective and protective services"
+> 742 "Business services, n.e.c."
+> 750 "Automotive repair shops. automotive services, except repair"
+> 752 "Electrical repair shops"
+> 760 "Misc. repair services"
+> 761 "Private households"
+> 762 "Hotels and motels"
+> 770 "Lodging places, except hotels and motels"
+> 771 "Laundry, cleaning, and garment services"
+> 772 "Beauty shops"
+> 780 "Barber shops"
+> 782 "Shoe repair shops"
+> 790 "Dressmaking shops"
+> 800 "Theaters and motion pictures"
+> 801 "Bowling alleys, billiard and pool parlors"
+> 802 "Misc. entertainment and recreation services"
+> 812 "Offices of physicians"
+> 820 "Offices of dentists"
+> 821 "Offices of chiropractors"
+> 822 "Offices of health practitioners, n.e.c.. offices of optometr
+> ists"
+> 831 "Hospitals"
+> 832 "Nursing and personal care facillities"
+> 840 "Heath services, n.e.c.. Job training and voc rehab services"
+> 841 "Legal services"
+> 842 "Elementary and secondary schools. child day care services"
+> 850 "Colleges and universities"
+> 852 "Libraries"
+> 860 "Educational services, n.e.c.. Busines, trade, and vocational
+>  schools"
+> 870 "Residential care facillities, without nursing"
+> 871 "Social services, n.e.c"
+> 872 "Museums, art galleries, and zoos"
+> 880 "Religious organizations"
+> 881 "Membership organizations"
+> 882 "Engineering, architectural, and surveying services"
+> 890 "Accounting, auditing, andd bookkeeping services"
+> 901 "All public administration"
+> ;
+ 48.   #delimit cr
+delimiter now cr
+.   lab val ind7090 ind7090
+ 49. 
+. 
+. 
+. 
+.   * label consistent two-digit codes dind7090
+. 
+.   lab var dind7090 "consistent 2-digit industry"
+ 50.   #delimit ;
+delimiter now ;
+.   label define dind7090
+> 1  "Agriculture Service"           
+> 2  "Other Agriculture"             
+> 3  "Mining"                        
+> 4  "Construction"                  
+> 5  "Lumber and wood products , except furniture"
+> 6  "Furniture and fixtures"        
+> 7  "Stone clay ,glass and concrete product"
+> 8  "Primary metals"                
+> 9  "Fabricated metal"              
+> 10 "Not specified metal industries"
+> 11 "Machinery, except electrical"  
+> 12 "Electrical Machinery, equipment ,and supplies"
+> 13 "Motor vehicles and equipment"          
+> 15 "Other transportation equipment and Aircrafts and parts"
+> 16 "Professional and photographic equipment"
+> 18 "Miscellaneous and not specified manufacturing industries and 
+> Toys, amusements ,and sporting goods"
+> 19 "Food and kindred products"     
+> 20 "Tobacco manufactures"          
+> 21 "Textile mill products"         
+> 22 "Apparel and other finished textile prod."
+> 23 "Paper and allied products"
+> 24 "Printing ,publishing and allied industries"
+> 25 "Chemicals and allied products" 
+> 26 "Petroleum and coal products"   
+> 27 "Rubber and miscellaneous plastics products"
+> 28 "Leather and leather products"  
+> 29 "Transportation"                
+> 30 "Communications"                
+> 31 "Utilities and Sanitary Services"
+> 32 "Wholesale Trade"               
+> 33 "Retail Trade"                  
+> 34 "Banking and Other Finance"     
+> 35 "Insurance and Real Estate"     
+> 36 "Private Household Services"    
+> 37 "Business Services"             
+> 38 "Repair Services"               
+> 39 "Personal Services , Except Private Household"
+> 40 "Entertainment and Recreation Services"
+> 41 "Hospitals"  
+> 42 "Health Services and Job training and voc rehab services, Exce
+> pt Hospitals"
+> 43 "Educational Services and Child day care services"          
+> 44 "Social Services"               
+> 45 "Other professional Services"   
+> 46 "Forestry and Fisheries"        
+> 50 "Public Administration"
+> ;
+ 51.   #delimit cr
+delimiter now cr
+.   lab val dind7090 dind7090
+ 52. 
+. 
+. 
+. 
+.   * label consistent one-digit codes mind7090
+. 
+.   lab var mind7090 "consistent 1-digit industry"
+ 53.   #delimit ;
+delimiter now ;
+.   label define mind7090
+> 1 "AGRICULTURE"
+> 2 "MINING"
+> 3 "CONSTRUCTION"
+> 4 "MANUFACTURING - DURABLE GOODS"
+> 5 "MANUFACTURING - NON-DURABLE GOODS"
+> 6 "TRANSPORTATION"
+> 7 "COMMUNICATION"    
+> 8 "UTILITIES AND SANITARY SERVICES"
+> 9 "WHOLESALE TRADE"
+> 10 "RETAIL TRADE"
+> 11 "FINANCE, INSURANCE, AND REAL ESTATE"
+> 12 "PRIVATE HOUSEHOLDS"
+> 13 "BUSINESS, AUTO AND REPAIR SERVICES"
+> 14 "PERSONAL SERVICES, EXC. PRIVATE HHLDS"
+> 15 "ENTERTAINMENT AND RECREATION SERVICES"
+> 16 "HOSPITALS"
+> 17 "HEALTH SERVICES AND JOB TRAINING AND VOC REHAB SERVICES, EXCE
+> PT HOSPITALS"
+> 18 "EDUCATIONAL SERVICES AND CHILD DAY CARE SERVICES"
+> 19 "SOCIAL SERVICES"
+> 20 "OTHER PROFESSIONAL SERVICES"
+> 21 "FORESTRY AND FISHERIES"
+> 22 "PUBLIC ADMINISTRATION"
+> ;
+ 54.   #delimit cr
+delimiter now cr
+.   lab val mind7090 mind7090
+ 55. 
+.   saveold ../basic_extract/cps`x'.dta, replace
+ 56. 
+.   local x = `x' + 1
+ 57.   if (`x'-13)/100 == int((`x'-13)/100) {
+ 58.     local x = `x' + 88
+ 59.     noisily display (`x'-1)/100
+ 60.   }
+ 61. }
+(2 real changes made)
+ind has all characters numeric; ind90 generated as int
+(1 missing value generated)
+(ind90: 73183 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     73,184       54.46       54.46
+          3 |     61,194       45.54      100.00
+------------+-----------------------------------
+      Total |    134,378      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     61194    579.9945    271.7107         11        
+> 901
+file ../basic_extract/cps199702.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 72558 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     72,558       54.12       54.12
+          3 |     61,512       45.88      100.00
+------------+-----------------------------------
+      Total |    134,070      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     61512    578.0236    272.0824         11        
+> 901
+file ../basic_extract/cps199703.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 72775 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     72,775       54.09       54.09
+          2 |          1        0.00       54.09
+          3 |     61,763       45.91      100.00
+------------+-----------------------------------
+      Total |    134,539      100.00
+(1 observation deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     61763    576.9587    273.0235         11        
+> 901
+file ../basic_extract/cps199704.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 72700 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     72,700       53.81       53.81
+          3 |     62,416       46.19      100.00
+------------+-----------------------------------
+      Total |    135,116      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     62416    574.3662    274.2802         11        
+> 901
+file ../basic_extract/cps199705.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 72221 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     72,221       53.37       53.37
+          2 |          2        0.00       53.37
+          3 |     63,102       46.63      100.00
+------------+-----------------------------------
+      Total |    135,325      100.00
+(2 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     63102    572.3856    275.9286         11        
+> 901
+file ../basic_extract/cps199706.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 71555 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     71,555       53.17       53.17
+          2 |          1        0.00       53.17
+          3 |     63,034       46.83      100.00
+------------+-----------------------------------
+      Total |    134,590      100.00
+(1 observation deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     63034     572.885    276.0527         11        
+> 901
+file ../basic_extract/cps199707.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 72052 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     72,052       53.27       53.27
+          3 |     63,207       46.73      100.00
+------------+-----------------------------------
+      Total |    135,259      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     63207    574.9672      274.86         11        
+> 901
+file ../basic_extract/cps199708.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 72816 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     72,816       53.55       53.55
+          3 |     63,168       46.45      100.00
+------------+-----------------------------------
+      Total |    135,984      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     63168    578.7615    273.6382         11        
+> 901
+file ../basic_extract/cps199709.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 72611 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     72,611       53.55       53.55
+          3 |     62,988       46.45      100.00
+------------+-----------------------------------
+      Total |    135,599      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     62988    579.3108    272.9256         11        
+> 901
+file ../basic_extract/cps199710.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 72581 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     72,581       53.45       53.45
+          3 |     63,204       46.55      100.00
+------------+-----------------------------------
+      Total |    135,785      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     63204    580.4708     272.484         11        
+> 901
+file ../basic_extract/cps199711.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 72901 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     72,901       54.00       54.00
+          3 |     62,108       46.00      100.00
+------------+-----------------------------------
+      Total |    135,009      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     62108    580.3297    271.7977         11        
+> 901
+file ../basic_extract/cps199712.dta saved
+1998
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 72731 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     72,731       53.89       53.89
+          3 |     62,230       46.11      100.00
+------------+-----------------------------------
+      Total |    134,961      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     62230      581.38    271.0473         11        
+> 901
+file ../basic_extract/cps199801.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 72440 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     72,440       53.89       53.89
+          3 |     61,973       46.11      100.00
+------------+-----------------------------------
+      Total |    134,413      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     61973    582.1343    271.0814         11        
+> 901
+file ../basic_extract/cps199802.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 72400 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     72,400       53.98       53.98
+          3 |     61,734       46.02      100.00
+------------+-----------------------------------
+      Total |    134,134      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     61734    582.1674    270.7191         11        
+> 901
+file ../basic_extract/cps199803.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 72421 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     72,421       53.84       53.84
+          3 |     62,095       46.16      100.00
+------------+-----------------------------------
+      Total |    134,516      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     62095    581.6563    271.3347         11        
+> 901
+file ../basic_extract/cps199804.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 72480 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     72,480       53.53       53.53
+          3 |     62,931       46.47      100.00
+------------+-----------------------------------
+      Total |    135,411      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     62931    578.6446    272.9932         11        
+> 901
+file ../basic_extract/cps199805.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 71555 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     71,555       53.00       53.00
+          2 |          1        0.00       53.01
+          3 |     63,441       46.99      100.00
+------------+-----------------------------------
+      Total |    134,997      100.00
+(1 observation deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     63441    577.2828    273.4782         11        
+> 901
+file ../basic_extract/cps199806.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 71020 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     71,020       52.63       52.63
+          3 |     63,928       47.37      100.00
+------------+-----------------------------------
+      Total |    134,948      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     63928     577.007    273.3622         11        
+> 901
+file ../basic_extract/cps199807.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 71624 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     71,624       52.97       52.97
+          3 |     63,592       47.03      100.00
+------------+-----------------------------------
+      Total |    135,216      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     63592    575.7159    273.8349         11        
+> 901
+file ../basic_extract/cps199808.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 72227 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     72,227       53.28       53.28
+          3 |     63,322       46.72      100.00
+------------+-----------------------------------
+      Total |    135,549      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     63322    578.8968    272.4891         11        
+> 901
+file ../basic_extract/cps199809.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 72168 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     72,168       53.19       53.19
+          3 |     63,505       46.81      100.00
+------------+-----------------------------------
+      Total |    135,673      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     63505    579.5779    272.5645         11        
+> 901
+file ../basic_extract/cps199810.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 72528 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     72,528       53.26       53.26
+          3 |     63,658       46.74      100.00
+------------+-----------------------------------
+      Total |    136,186      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     63658     580.753    271.9436         11        
+> 901
+file ../basic_extract/cps199811.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 72871 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     72,871       53.59       53.59
+          3 |     63,106       46.41      100.00
+------------+-----------------------------------
+      Total |    135,977      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     63106    581.0778    270.6263         11        
+> 901
+file ../basic_extract/cps199812.dta saved
+1999
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 72923 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     72,923       53.66       53.66
+          3 |     62,966       46.34      100.00
+------------+-----------------------------------
+      Total |    135,889      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     62966    582.0963    271.1188         11        
+> 901
+file ../basic_extract/cps199901.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 72603 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     72,603       53.76       53.76
+          3 |     62,448       46.24      100.00
+------------+-----------------------------------
+      Total |    135,051      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     62448    583.9162    270.3019         11        
+> 901
+file ../basic_extract/cps199902.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 72713 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     72,713       53.98       53.98
+          2 |          1        0.00       53.98
+          3 |     61,980       46.02      100.00
+------------+-----------------------------------
+      Total |    134,694      100.00
+(1 observation deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     61980    584.8914    270.3355         11        
+> 901
+file ../basic_extract/cps199903.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 72867 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     72,867       54.00       54.00
+          3 |     62,084       46.00      100.00
+------------+-----------------------------------
+      Total |    134,951      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     62084     585.354     271.114         11        
+> 901
+file ../basic_extract/cps199904.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 72507 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     72,507       53.71       53.71
+          2 |          1        0.00       53.71
+          3 |     62,487       46.29      100.00
+------------+-----------------------------------
+      Total |    134,995      100.00
+(1 observation deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     62487    582.7361    272.5646         11        
+> 901
+file ../basic_extract/cps199905.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 72037 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     72,037       53.13       53.13
+          3 |     63,540       46.87      100.00
+------------+-----------------------------------
+      Total |    135,577      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     63540    581.5985    273.1738         11        
+> 901
+file ../basic_extract/cps199906.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 71431 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     71,431       52.71       52.71
+          3 |     64,091       47.29      100.00
+------------+-----------------------------------
+      Total |    135,522      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     64091    580.5637    272.8541         11        
+> 901
+file ../basic_extract/cps199907.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 72092 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     72,092       52.91       52.91
+          3 |     64,167       47.09      100.00
+------------+-----------------------------------
+      Total |    136,259      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     64167    580.1281    272.6826         11        
+> 901
+file ../basic_extract/cps199908.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 72561 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     72,561       53.11       53.11
+          3 |     64,061       46.89      100.00
+------------+-----------------------------------
+      Total |    136,622      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     64061    582.2158    271.6548         11        
+> 901
+file ../basic_extract/cps199909.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 72589 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     72,589       53.10       53.10
+          3 |     64,121       46.90      100.00
+------------+-----------------------------------
+      Total |    136,710      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     64121    581.3772    271.8449         11        
+> 901
+file ../basic_extract/cps199910.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 73048 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     73,048       53.01       53.01
+          3 |     64,742       46.99      100.00
+------------+-----------------------------------
+      Total |    137,790      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     64742    581.3344    272.0354         11        
+> 901
+file ../basic_extract/cps199911.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 72667 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     72,667       53.28       53.28
+          3 |     63,720       46.72      100.00
+------------+-----------------------------------
+      Total |    136,387      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     63720    582.3201    271.4938         11        
+> 901
+file ../basic_extract/cps199912.dta saved
+2000
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 72980 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     72,980       53.27       53.27
+          3 |     64,026       46.73      100.00
+------------+-----------------------------------
+      Total |    137,006      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     64026    584.2397    270.5522         11        
+> 901
+file ../basic_extract/cps200001.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 72000 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     72,000       53.11       53.11
+          3 |     63,570       46.89      100.00
+------------+-----------------------------------
+      Total |    135,570      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     63570    585.1922    270.2005         11        
+> 901
+file ../basic_extract/cps200002.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 71521 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     71,521       53.19       53.19
+          3 |     62,941       46.81      100.00
+------------+-----------------------------------
+      Total |    134,462      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     62941    585.2779    270.3413         11        
+> 901
+file ../basic_extract/cps200003.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 72236 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     72,236       53.26       53.26
+          3 |     63,388       46.74      100.00
+------------+-----------------------------------
+      Total |    135,624      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     63388    584.4803     270.587         11        
+> 901
+file ../basic_extract/cps200004.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 72186 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     72,186       53.25       53.25
+          3 |     63,371       46.75      100.00
+------------+-----------------------------------
+      Total |    135,557      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     63371     581.818    272.4521         11        
+> 901
+file ../basic_extract/cps200005.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 71642 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     71,642       52.88       52.88
+          3 |     63,846       47.12      100.00
+------------+-----------------------------------
+      Total |    135,488      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     63846     579.475    273.7788         11        
+> 901
+file ../basic_extract/cps200006.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 71226 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     71,226       52.70       52.70
+          3 |     63,937       47.30      100.00
+------------+-----------------------------------
+      Total |    135,163      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     63937     577.565    274.8896         11        
+> 901
+file ../basic_extract/cps200007.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 71237 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     71,237       52.77       52.77
+          2 |          1        0.00       52.77
+          3 |     63,749       47.23      100.00
+------------+-----------------------------------
+      Total |    134,987      100.00
+(1 observation deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     63749    576.5612    274.4844         11        
+> 901
+file ../basic_extract/cps200008.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 71855 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     71,855       53.28       53.28
+          3 |     63,001       46.72      100.00
+------------+-----------------------------------
+      Total |    134,856      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     63001    580.5258    273.0504         11        
+> 901
+file ../basic_extract/cps200009.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 72032 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     72,032       53.25       53.25
+          3 |     63,251       46.75      100.00
+------------+-----------------------------------
+      Total |    135,283      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     63251    581.4922    272.3307         11        
+> 901
+file ../basic_extract/cps200010.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 71911 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     71,911       53.38       53.38
+          3 |     62,812       46.62      100.00
+------------+-----------------------------------
+      Total |    134,723      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     62812    584.0699    271.0066         11        
+> 901
+file ../basic_extract/cps200011.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 71319 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     71,319       53.27       53.27
+          2 |          1        0.00       53.28
+          3 |     62,551       46.72      100.00
+------------+-----------------------------------
+      Total |    133,871      100.00
+(1 observation deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     62551    585.4091    270.5233         11        
+> 901
+file ../basic_extract/cps200012.dta saved
+2001
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 71138 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     71,138       53.37       53.37
+          2 |          2        0.00       53.37
+          3 |     62,146       46.63      100.00
+------------+-----------------------------------
+      Total |    133,286      100.00
+(2 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     62146    587.0277     270.022         11        
+> 901
+file ../basic_extract/cps200101.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 70578 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     70,578       53.39       53.39
+          3 |     61,604       46.61      100.00
+------------+-----------------------------------
+      Total |    132,182      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     61604    587.3715    269.6495         11        
+> 901
+file ../basic_extract/cps200102.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 70194 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     70,194       53.74       53.74
+          2 |          1        0.00       53.74
+          3 |     60,413       46.26      100.00
+------------+-----------------------------------
+      Total |    130,608      100.00
+(1 observation deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     60413    587.2462    269.5898         11        
+> 901
+file ../basic_extract/cps200103.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 70736 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     70,736       53.87       53.87
+          3 |     60,566       46.13      100.00
+------------+-----------------------------------
+      Total |    131,302      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     60566    584.5231    271.4729         11        
+> 901
+file ../basic_extract/cps200104.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 71021 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     71,021       53.80       53.80
+          2 |          1        0.00       53.81
+          3 |     60,976       46.19      100.00
+------------+-----------------------------------
+      Total |    131,998      100.00
+(1 observation deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     60976    583.5825    272.1847         11        
+> 901
+file ../basic_extract/cps200105.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 70298 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     70,298       53.40       53.40
+          2 |          1        0.00       53.40
+          3 |     61,353       46.60      100.00
+------------+-----------------------------------
+      Total |    131,652      100.00
+(1 observation deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     61353    581.8901    272.7041         11        
+> 901
+file ../basic_extract/cps200106.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 83391 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     83,391       52.66       52.66
+          3 |     74,962       47.34      100.00
+------------+-----------------------------------
+      Total |    158,353      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     74962    580.1032    274.5556         11        
+> 901
+file ../basic_extract/cps200107.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 83991 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     83,991       52.85       52.85
+          3 |     74,920       47.15      100.00
+------------+-----------------------------------
+      Total |    158,911      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     74920    581.9554    273.8418         11        
+> 901
+file ../basic_extract/cps200108.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 84097 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,097       52.94       52.94
+          3 |     74,768       47.06      100.00
+------------+-----------------------------------
+      Total |    158,865      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     74768    585.2069     272.748         11        
+> 901
+file ../basic_extract/cps200109.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 83906 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     83,906       52.83       52.83
+          3 |     74,913       47.17      100.00
+------------+-----------------------------------
+      Total |    158,819      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     74913    586.0447    272.4862         11        
+> 901
+file ../basic_extract/cps200110.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 84157 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,157       53.15       53.15
+          3 |     74,178       46.85      100.00
+------------+-----------------------------------
+      Total |    158,335      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     74178    587.8739    271.2532         11        
+> 901
+file ../basic_extract/cps200111.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 84286 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,286       53.37       53.37
+          2 |          1        0.00       53.37
+          3 |     73,651       46.63      100.00
+------------+-----------------------------------
+      Total |    157,938      100.00
+(1 observation deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     73651     587.915    271.0767         11        
+> 901
+file ../basic_extract/cps200112.dta saved
+2002
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 84787 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,787       53.68       53.68
+          2 |          1        0.00       53.68
+          3 |     73,159       46.32      100.00
+------------+-----------------------------------
+      Total |    157,947      100.00
+(1 observation deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     73159     588.445    270.7792         11        
+> 901
+file ../basic_extract/cps200201.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 84334 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,334       53.56       53.56
+          3 |     73,109       46.44      100.00
+------------+-----------------------------------
+      Total |    157,443      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     73109    590.6426    269.6561         11        
+> 901
+file ../basic_extract/cps200202.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 84420 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,420       53.83       53.83
+          3 |     72,401       46.17      100.00
+------------+-----------------------------------
+      Total |    156,821      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     72401    589.8397    269.9815         11        
+> 901
+file ../basic_extract/cps200203.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 84940 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,940       53.72       53.72
+          3 |     73,167       46.28      100.00
+------------+-----------------------------------
+      Total |    158,107      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     73167    589.1877    270.7501         11        
+> 901
+file ../basic_extract/cps200204.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 84928 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,928       53.58       53.58
+          3 |     73,565       46.42      100.00
+------------+-----------------------------------
+      Total |    158,493      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     73565    588.8267    271.0145         11        
+> 901
+file ../basic_extract/cps200205.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 84503 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,503       53.25       53.25
+          3 |     74,178       46.75      100.00
+------------+-----------------------------------
+      Total |    158,681      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     74178    587.7047    271.3549         11        
+> 901
+file ../basic_extract/cps200206.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 84510 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,510       53.07       53.07
+          2 |          2        0.00       53.07
+          3 |     74,735       46.93      100.00
+------------+-----------------------------------
+      Total |    159,247      100.00
+(2 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     74735      586.32    272.8004         11        
+> 901
+file ../basic_extract/cps200207.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 84791 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,791       53.31       53.31
+          3 |     74,267       46.69      100.00
+------------+-----------------------------------
+      Total |    159,058      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     74267    587.1652     272.504         11        
+> 901
+file ../basic_extract/cps200208.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 85147 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     85,147       53.41       53.41
+          3 |     74,287       46.59      100.00
+------------+-----------------------------------
+      Total |    159,434      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     74287    589.1321    272.8088         11        
+> 901
+file ../basic_extract/cps200209.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 85406 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     85,406       53.42       53.42
+          2 |          1        0.00       53.42
+          3 |     74,481       46.58      100.00
+------------+-----------------------------------
+      Total |    159,888      100.00
+(1 observation deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     74481    588.6768    273.2535         11        
+> 901
+file ../basic_extract/cps200210.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 85309 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     85,309       53.41       53.41
+          3 |     74,404       46.59      100.00
+------------+-----------------------------------
+      Total |    159,713      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     74404    589.2269    272.1637         11        
+> 901
+file ../basic_extract/cps200211.dta saved
+(0 real changes made)
+ind has all characters numeric; ind90 generated as int
+(ind90: 85594 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     85,594       53.61       53.61
+          3 |     74,063       46.39      100.00
+------------+-----------------------------------
+      Total |    159,657      100.00
+(0 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     74063     591.423    270.6691         11        
+> 901
+file ../basic_extract/cps200212.dta saved
+2003
+ind has all characters numeric; ind02 generated as int
+(86173 differences between ind02 and ind90)
+(73347 real changes made)
+(ind90: 73347 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     86,224       54.10       54.10
+          2 |         10        0.01       54.10
+          3 |     73,152       45.90      100.00
+------------+-----------------------------------
+      Total |    159,386      100.00
+(10 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     73152    594.4092    269.8449         11        
+> 901
+file ../basic_extract/cps200301.dta saved
+ind has all characters numeric; ind02 generated as int
+(85751 differences between ind02 and ind90)
+(73045 real changes made)
+(ind90: 73045 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     85,779       54.07       54.07
+          2 |          9        0.01       54.08
+          3 |     72,854       45.92      100.00
+------------+-----------------------------------
+      Total |    158,642      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     72854    595.5514    268.9016         11        
+> 901
+file ../basic_extract/cps200302.dta saved
+ind has all characters numeric; ind02 generated as int
+(86096 differences between ind02 and ind90)
+(72803 real changes made)
+(ind90: 72803 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     86,094       54.24       54.24
+          2 |          9        0.01       54.24
+          3 |     72,627       45.76      100.00
+------------+-----------------------------------
+      Total |    158,730      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     72627    594.9667    269.9896         11        
+> 901
+file ../basic_extract/cps200303.dta saved
+ind has all characters numeric; ind02 generated as int
+(86142 differences between ind02 and ind90)
+(73086 real changes made)
+(ind90: 73086 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     86,119       54.15       54.15
+          2 |          9        0.01       54.15
+          3 |     72,921       45.85      100.00
+------------+-----------------------------------
+      Total |    159,049      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     72921    594.0886    270.2866         11        
+> 901
+file ../basic_extract/cps200304.dta saved
+ind has all characters numeric; ind02 generated as int
+(85843 differences between ind02 and ind90)
+(73169 real changes made)
+(ind90: 73169 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     85,820       54.03       54.03
+          2 |         10        0.01       54.04
+          3 |     73,006       45.96      100.00
+------------+-----------------------------------
+      Total |    158,836      100.00
+(10 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     73006    592.6371    271.7197         11        
+> 901
+file ../basic_extract/cps200305.dta saved
+ind has all characters numeric; ind02 generated as int
+(84615 differences between ind02 and ind90)
+(73147 real changes made)
+(ind90: 73147 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,610       53.69       53.69
+          2 |          9        0.01       53.69
+          3 |     72,975       46.31      100.00
+------------+-----------------------------------
+      Total |    157,594      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     72975    590.0441    273.4812         11        
+> 901
+file ../basic_extract/cps200306.dta saved
+ind has all characters numeric; ind02 generated as int
+(84355 differences between ind02 and ind90)
+(72808 real changes made)
+(ind90: 72808 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,351       53.73       53.73
+          2 |          9        0.01       53.73
+          3 |     72,638       46.27      100.00
+------------+-----------------------------------
+      Total |    156,998      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     72638    589.5652    273.7445         11        
+> 901
+file ../basic_extract/cps200307.dta saved
+ind has all characters numeric; ind02 generated as int
+(84492 differences between ind02 and ind90)
+(72318 real changes made)
+(ind90: 72318 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,515       53.95       53.95
+          2 |          9        0.01       53.95
+          3 |     72,139       46.05      100.00
+------------+-----------------------------------
+      Total |    156,663      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     72139    588.4138    274.5138         11        
+> 901
+file ../basic_extract/cps200308.dta saved
+ind has all characters numeric; ind02 generated as int
+(85134 differences between ind02 and ind90)
+(72381 real changes made)
+(ind90: 72381 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     85,170       54.12       54.12
+          2 |          9        0.01       54.12
+          3 |     72,197       45.88      100.00
+------------+-----------------------------------
+      Total |    157,376      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     72197    590.4071    273.5083         11        
+> 901
+file ../basic_extract/cps200309.dta saved
+ind has all characters numeric; ind02 generated as int
+(84886 differences between ind02 and ind90)
+(72193 real changes made)
+(ind90: 72193 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,927       54.11       54.11
+          2 |          9        0.01       54.12
+          3 |     72,014       45.88      100.00
+------------+-----------------------------------
+      Total |    156,950      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     72014    592.6185    272.4173         11        
+> 901
+file ../basic_extract/cps200310.dta saved
+ind has all characters numeric; ind02 generated as int
+(84859 differences between ind02 and ind90)
+(72142 real changes made)
+(ind90: 72142 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,918       54.13       54.13
+          2 |          9        0.01       54.14
+          3 |     71,951       45.86      100.00
+------------+-----------------------------------
+      Total |    156,878      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     71951    593.3895    270.9663         11        
+> 901
+file ../basic_extract/cps200311.dta saved
+ind has all characters numeric; ind02 generated as int
+(85656 differences between ind02 and ind90)
+(71438 real changes made)
+(ind90: 71438 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     85,709       54.60       54.60
+          2 |          9        0.01       54.61
+          3 |     71,258       45.39      100.00
+------------+-----------------------------------
+      Total |    156,976      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     71258    595.6332    269.5865         11        
+> 901
+file ../basic_extract/cps200312.dta saved
+2004
+ind has all characters numeric; ind02 generated as int
+(85447 differences between ind02 and ind90)
+(71568 real changes made)
+(ind90: 71568 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     85,484       54.48       54.48
+          2 |          9        0.01       54.49
+          3 |     71,403       45.51      100.00
+------------+-----------------------------------
+      Total |    156,896      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     71403    596.3226       269.7         11        
+> 901
+file ../basic_extract/cps200401.dta saved
+ind has all characters numeric; ind02 generated as int
+(85849 differences between ind02 and ind90)
+(71839 real changes made)
+(ind90: 71839 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     85,863       54.50       54.50
+          2 |          9        0.01       54.50
+          3 |     71,681       45.50      100.00
+------------+-----------------------------------
+      Total |    157,553      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     71681    596.6218    269.5559         11        
+> 901
+file ../basic_extract/cps200402.dta saved
+ind has all characters numeric; ind02 generated as int
+(85729 differences between ind02 and ind90)
+(70952 real changes made)
+(ind90: 70952 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     85,747       54.77       54.77
+          2 |         10        0.01       54.78
+          3 |     70,795       45.22      100.00
+------------+-----------------------------------
+      Total |    156,552      100.00
+(10 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     70795    596.3177    270.8528         11        
+> 901
+file ../basic_extract/cps200403.dta saved
+ind has all characters numeric; ind02 generated as int
+(84680 differences between ind02 and ind90)
+(70858 real changes made)
+(ind90: 70858 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,703       54.50       54.50
+          2 |         10        0.01       54.51
+          3 |     70,707       45.49      100.00
+------------+-----------------------------------
+      Total |    155,420      100.00
+(10 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     70707    594.0944    272.3063         11        
+> 901
+file ../basic_extract/cps200404.dta saved
+ind has all characters numeric; ind02 generated as int
+(84073 differences between ind02 and ind90)
+(71129 real changes made)
+(ind90: 71129 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,085       54.22       54.22
+          2 |         10        0.01       54.23
+          3 |     70,979       45.77      100.00
+------------+-----------------------------------
+      Total |    155,074      100.00
+(10 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     70979    591.7103    273.8906         11        
+> 901
+file ../basic_extract/cps200405.dta saved
+ind has all characters numeric; ind02 generated as int
+(82818 differences between ind02 and ind90)
+(71207 real changes made)
+(ind90: 71207 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     82,842       53.83       53.83
+          2 |         10        0.01       53.84
+          3 |     71,037       46.16      100.00
+------------+-----------------------------------
+      Total |    153,889      100.00
+(10 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     71037    589.0057    276.4762         11        
+> 901
+file ../basic_extract/cps200406.dta saved
+ind has all characters numeric; ind02 generated as int
+(81615 differences between ind02 and ind90)
+(70987 real changes made)
+(ind90: 70987 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     81,663       53.55       53.55
+          2 |         10        0.01       53.56
+          3 |     70,812       46.44      100.00
+------------+-----------------------------------
+      Total |    152,485      100.00
+(10 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     70812    589.0957    274.9831         11        
+> 901
+file ../basic_extract/cps200407.dta saved
+ind has all characters numeric; ind02 generated as int
+(82549 differences between ind02 and ind90)
+(71483 real changes made)
+(ind90: 71483 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     82,591       53.66       53.66
+          2 |          9        0.01       53.67
+          3 |     71,305       46.33      100.00
+------------+-----------------------------------
+      Total |    153,905      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     71305    588.5989    275.3454         11        
+> 901
+file ../basic_extract/cps200408.dta saved
+ind has all characters numeric; ind02 generated as int
+(83586 differences between ind02 and ind90)
+(71026 real changes made)
+(ind90: 71026 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     83,645       54.14       54.14
+          2 |          9        0.01       54.14
+          3 |     70,850       45.86      100.00
+------------+-----------------------------------
+      Total |    154,504      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     70850    591.1034    274.1788         11        
+> 901
+file ../basic_extract/cps200409.dta saved
+ind has all characters numeric; ind02 generated as int
+(83396 differences between ind02 and ind90)
+(72100 real changes made)
+(ind90: 72100 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     83,452       53.71       53.71
+          2 |          9        0.01       53.72
+          3 |     71,913       46.28      100.00
+------------+-----------------------------------
+      Total |    155,374      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     71913    593.0974    272.6871         11        
+> 901
+file ../basic_extract/cps200410.dta saved
+ind has all characters numeric; ind02 generated as int
+(84228 differences between ind02 and ind90)
+(72443 real changes made)
+(ind90: 72443 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,274       53.84       53.84
+          2 |          9        0.01       53.85
+          3 |     72,245       46.15      100.00
+------------+-----------------------------------
+      Total |    156,528      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     72245    593.3618    272.4259         11        
+> 901
+file ../basic_extract/cps200411.dta saved
+ind has all characters numeric; ind02 generated as int
+(84728 differences between ind02 and ind90)
+(71252 real changes made)
+(ind90: 71252 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,820       54.42       54.42
+          2 |          9        0.01       54.43
+          3 |     71,025       45.57      100.00
+------------+-----------------------------------
+      Total |    155,854      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     71025    595.0635    271.3025         11        
+> 901
+file ../basic_extract/cps200412.dta saved
+2005
+ind has all characters numeric; ind02 generated as int
+(85377 differences between ind02 and ind90)
+(71420 real changes made)
+(ind90: 71420 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     85,444       54.54       54.54
+          2 |         10        0.01       54.54
+          3 |     71,213       45.46      100.00
+------------+-----------------------------------
+      Total |    156,667      100.00
+(10 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     71213    596.6593    270.3306         11        
+> 901
+file ../basic_extract/cps200501.dta saved
+ind has all characters numeric; ind02 generated as int
+(85212 differences between ind02 and ind90)
+(70855 real changes made)
+(ind90: 70855 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     85,274       54.69       54.69
+          2 |         10        0.01       54.69
+          3 |     70,651       45.31      100.00
+------------+-----------------------------------
+      Total |    155,935      100.00
+(10 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     70651    596.5986    270.3448         11        
+> 901
+file ../basic_extract/cps200502.dta saved
+ind has all characters numeric; ind02 generated as int
+(84890 differences between ind02 and ind90)
+(69910 real changes made)
+(ind90: 69910 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,933       54.92       54.92
+          2 |          9        0.01       54.92
+          3 |     69,718       45.08      100.00
+------------+-----------------------------------
+      Total |    154,660      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     69718    596.3765    271.0014         11        
+> 901
+file ../basic_extract/cps200503.dta saved
+ind has all characters numeric; ind02 generated as int
+(84390 differences between ind02 and ind90)
+(70791 real changes made)
+(ind90: 70791 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,465       54.48       54.48
+          2 |          9        0.01       54.48
+          3 |     70,576       45.52      100.00
+------------+-----------------------------------
+      Total |    155,050      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     70576     595.112    272.2535         11        
+> 901
+file ../basic_extract/cps200504.dta saved
+ind has all characters numeric; ind02 generated as int
+(83593 differences between ind02 and ind90)
+(71271 real changes made)
+(ind90: 71271 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     83,654       54.07       54.07
+          2 |         10        0.01       54.08
+          3 |     71,053       45.92      100.00
+------------+-----------------------------------
+      Total |    154,717      100.00
+(10 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     71053    595.2601    273.0744         11        
+> 901
+file ../basic_extract/cps200505.dta saved
+ind has all characters numeric; ind02 generated as int
+(82192 differences between ind02 and ind90)
+(72008 real changes made)
+(ind90: 72008 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     82,258       53.39       53.39
+          2 |          9        0.01       53.40
+          3 |     71,792       46.60      100.00
+------------+-----------------------------------
+      Total |    154,059      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     71792    591.6236    275.5449         11        
+> 901
+file ../basic_extract/cps200506.dta saved
+ind has all characters numeric; ind02 generated as int
+(81502 differences between ind02 and ind90)
+(72549 real changes made)
+(ind90: 72549 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     81,549       52.99       52.99
+          2 |          9        0.01       52.99
+          3 |     72,344       47.01      100.00
+------------+-----------------------------------
+      Total |    153,902      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     72344    590.2347    275.3994         11        
+> 901
+file ../basic_extract/cps200507.dta saved
+ind has all characters numeric; ind02 generated as int
+(81782 differences between ind02 and ind90)
+(72019 real changes made)
+(ind90: 72019 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     81,832       53.26       53.26
+          2 |          9        0.01       53.26
+          3 |     71,817       46.74      100.00
+------------+-----------------------------------
+      Total |    153,658      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     71817    590.5951    274.9945         11        
+> 901
+file ../basic_extract/cps200508.dta saved
+ind has all characters numeric; ind02 generated as int
+(82301 differences between ind02 and ind90)
+(70939 real changes made)
+(ind90: 70939 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     82,338       53.78       53.78
+          2 |          9        0.01       53.79
+          3 |     70,749       46.21      100.00
+------------+-----------------------------------
+      Total |    153,096      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     70749    591.2524    275.0314         11        
+> 901
+file ../basic_extract/cps200509.dta saved
+ind has all characters numeric; ind02 generated as int
+(82223 differences between ind02 and ind90)
+(71871 real changes made)
+(ind90: 71871 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     82,284       53.45       53.45
+          2 |          9        0.01       53.46
+          3 |     71,653       46.54      100.00
+------------+-----------------------------------
+      Total |    153,946      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     71653    593.5843    272.9668         11        
+> 901
+file ../basic_extract/cps200510.dta saved
+ind has all characters numeric; ind02 generated as int
+(82310 differences between ind02 and ind90)
+(71485 real changes made)
+(ind90: 71485 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     82,389       53.62       53.62
+          2 |          9        0.01       53.63
+          3 |     71,247       46.37      100.00
+------------+-----------------------------------
+      Total |    153,645      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     71247    593.8261    272.5044         11        
+> 901
+file ../basic_extract/cps200511.dta saved
+ind has all characters numeric; ind02 generated as int
+(82842 differences between ind02 and ind90)
+(70354 real changes made)
+(ind90: 70354 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     82,940       54.19       54.19
+          2 |          9        0.01       54.19
+          3 |     70,109       45.81      100.00
+------------+-----------------------------------
+      Total |    153,058      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     70109    595.1344    271.3802         11        
+> 901
+file ../basic_extract/cps200512.dta saved
+2006
+ind has all characters numeric; ind02 generated as int
+(83438 differences between ind02 and ind90)
+(70240 real changes made)
+(ind90: 70240 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     83,562       54.42       54.42
+          2 |          9        0.01       54.42
+          3 |     69,988       45.58      100.00
+------------+-----------------------------------
+      Total |    153,559      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     69988    594.6037     271.627         11        
+> 901
+file ../basic_extract/cps200601.dta saved
+ind has all characters numeric; ind02 generated as int
+(83174 differences between ind02 and ind90)
+(70331 real changes made)
+(ind90: 70331 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     83,285       54.30       54.30
+          2 |          9        0.01       54.30
+          3 |     70,097       45.70      100.00
+------------+-----------------------------------
+      Total |    153,391      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     70097    596.8532    271.4553         11        
+> 901
+file ../basic_extract/cps200602.dta saved
+ind has all characters numeric; ind02 generated as int
+(83366 differences between ind02 and ind90)
+(69495 real changes made)
+(ind90: 69495 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     83,468       54.64       54.64
+          2 |          9        0.01       54.65
+          3 |     69,270       45.35      100.00
+------------+-----------------------------------
+      Total |    152,747      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     69270      595.31    272.5671         11        
+> 901
+file ../basic_extract/cps200603.dta saved
+ind has all characters numeric; ind02 generated as int
+(83294 differences between ind02 and ind90)
+(70452 real changes made)
+(ind90: 70452 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     83,387       54.29       54.29
+          2 |          9        0.01       54.29
+          3 |     70,210       45.71      100.00
+------------+-----------------------------------
+      Total |    153,606      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     70210    593.9563     273.912         11        
+> 901
+file ../basic_extract/cps200604.dta saved
+ind has all characters numeric; ind02 generated as int
+(82969 differences between ind02 and ind90)
+(70533 real changes made)
+(ind90: 70533 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     83,066       54.17       54.17
+          2 |          9        0.01       54.17
+          3 |     70,278       45.83      100.00
+------------+-----------------------------------
+      Total |    153,353      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     70278    593.5602    274.1269         11        
+> 901
+file ../basic_extract/cps200605.dta saved
+ind has all characters numeric; ind02 generated as int
+(82222 differences between ind02 and ind90)
+(71171 real changes made)
+(ind90: 71171 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     82,305       53.71       53.71
+          2 |          9        0.01       53.72
+          3 |     70,914       46.28      100.00
+------------+-----------------------------------
+      Total |    153,228      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     70914    589.5633    276.0984         11        
+> 901
+file ../basic_extract/cps200606.dta saved
+ind has all characters numeric; ind02 generated as int
+(81607 differences between ind02 and ind90)
+(72102 real changes made)
+(ind90: 72102 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     81,700       53.21       53.21
+          2 |          9        0.01       53.22
+          3 |     71,825       46.78      100.00
+------------+-----------------------------------
+      Total |    153,534      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     71825    589.9711    276.0436         11        
+> 901
+file ../basic_extract/cps200607.dta saved
+ind has all characters numeric; ind02 generated as int
+(81930 differences between ind02 and ind90)
+(72399 real changes made)
+(ind90: 72399 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     82,023       53.21       53.21
+          2 |          9        0.01       53.21
+          3 |     72,126       46.79      100.00
+------------+-----------------------------------
+      Total |    154,158      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     72126    589.8134    276.6335         11        
+> 901
+file ../basic_extract/cps200608.dta saved
+ind has all characters numeric; ind02 generated as int
+(82295 differences between ind02 and ind90)
+(71287 real changes made)
+(ind90: 71287 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     82,388       53.71       53.71
+          2 |          9        0.01       53.71
+          3 |     71,009       46.29      100.00
+------------+-----------------------------------
+      Total |    153,406      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     71009    590.7111    276.2221         11        
+> 901
+file ../basic_extract/cps200609.dta saved
+ind has all characters numeric; ind02 generated as int
+(81865 differences between ind02 and ind90)
+(71562 real changes made)
+(ind90: 71562 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     81,974       53.49       53.49
+          2 |         10        0.01       53.50
+          3 |     71,270       46.50      100.00
+------------+-----------------------------------
+      Total |    153,254      100.00
+(10 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     71270     593.258    275.0111         11        
+> 901
+file ../basic_extract/cps200610.dta saved
+ind has all characters numeric; ind02 generated as int
+(82068 differences between ind02 and ind90)
+(71384 real changes made)
+(ind90: 71384 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     82,175       53.62       53.62
+          2 |          9        0.01       53.62
+          3 |     71,080       46.38      100.00
+------------+-----------------------------------
+      Total |    153,264      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     71080    595.1867    273.7017         11        
+> 901
+file ../basic_extract/cps200611.dta saved
+ind has all characters numeric; ind02 generated as int
+(82519 differences between ind02 and ind90)
+(70635 real changes made)
+(ind90: 70635 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     82,658       54.03       54.03
+          2 |         10        0.01       54.04
+          3 |     70,304       45.96      100.00
+------------+-----------------------------------
+      Total |    152,972      100.00
+(10 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     70304    594.1467    273.7427         11        
+> 901
+file ../basic_extract/cps200612.dta saved
+2007
+ind has all characters numeric; ind02 generated as int
+(82950 differences between ind02 and ind90)
+(69574 real changes made)
+(ind90: 69574 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     83,070       54.53       54.53
+          2 |         10        0.01       54.54
+          3 |     69,248       45.46      100.00
+------------+-----------------------------------
+      Total |    152,328      100.00
+(10 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     69248    596.5582     273.065         11        
+> 901
+file ../basic_extract/cps200701.dta saved
+ind has all characters numeric; ind02 generated as int
+(83477 differences between ind02 and ind90)
+(69291 real changes made)
+(ind90: 69291 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     83,620       54.80       54.80
+          2 |          9        0.01       54.81
+          3 |     68,961       45.19      100.00
+------------+-----------------------------------
+      Total |    152,590      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     68961    597.0167    273.4654         11        
+> 901
+file ../basic_extract/cps200702.dta saved
+ind has all characters numeric; ind02 generated as int
+(83408 differences between ind02 and ind90)
+(69163 real changes made)
+(ind90: 69163 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     83,557       54.83       54.83
+          2 |          9        0.01       54.83
+          3 |     68,833       45.17      100.00
+------------+-----------------------------------
+      Total |    152,399      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     68833     597.543    273.5647         11        
+> 901
+file ../basic_extract/cps200703.dta saved
+ind has all characters numeric; ind02 generated as int
+(83924 differences between ind02 and ind90)
+(69961 real changes made)
+(ind90: 69961 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,053       54.68       54.68
+          2 |          9        0.01       54.69
+          3 |     69,647       45.31      100.00
+------------+-----------------------------------
+      Total |    153,709      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     69647    598.2901    273.6971         11        
+> 901
+file ../basic_extract/cps200704.dta saved
+ind has all characters numeric; ind02 generated as int
+(83863 differences between ind02 and ind90)
+(70536 real changes made)
+(ind90: 70536 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     83,973       54.45       54.45
+          2 |          9        0.01       54.46
+          3 |     70,237       45.54      100.00
+------------+-----------------------------------
+      Total |    154,219      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     70237    596.8876    274.3252         11        
+> 901
+file ../basic_extract/cps200705.dta saved
+ind has all characters numeric; ind02 generated as int
+(82895 differences between ind02 and ind90)
+(70947 real changes made)
+(ind90: 70947 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     82,981       54.01       54.01
+          2 |          9        0.01       54.02
+          3 |     70,648       45.98      100.00
+------------+-----------------------------------
+      Total |    153,638      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     70648    593.6053    275.1743         11        
+> 901
+file ../basic_extract/cps200706.dta saved
+ind has all characters numeric; ind02 generated as int
+(82023 differences between ind02 and ind90)
+(70983 real changes made)
+(ind90: 70983 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     82,108       53.73       53.73
+          2 |          9        0.01       53.74
+          3 |     70,694       46.26      100.00
+------------+-----------------------------------
+      Total |    152,811      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     70694    592.7751    275.1591         11        
+> 901
+file ../basic_extract/cps200707.dta saved
+ind has all characters numeric; ind02 generated as int
+(81995 differences between ind02 and ind90)
+(70521 real changes made)
+(ind90: 70521 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     82,090       53.89       53.89
+          2 |          9        0.01       53.89
+          3 |     70,241       46.11      100.00
+------------+-----------------------------------
+      Total |    152,340      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     70241    594.1917     274.523         11        
+> 901
+file ../basic_extract/cps200708.dta saved
+ind has all characters numeric; ind02 generated as int
+(81803 differences between ind02 and ind90)
+(70334 real changes made)
+(ind90: 70334 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     81,903       53.89       53.89
+          2 |          9        0.01       53.90
+          3 |     70,065       46.10      100.00
+------------+-----------------------------------
+      Total |    151,977      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     70065    595.1167    274.4417         11        
+> 901
+file ../basic_extract/cps200709.dta saved
+ind has all characters numeric; ind02 generated as int
+(81533 differences between ind02 and ind90)
+(69976 real changes made)
+(ind90: 69976 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     81,657       53.94       53.94
+          2 |          9        0.01       53.95
+          3 |     69,713       46.05      100.00
+------------+-----------------------------------
+      Total |    151,379      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     69713    595.2116    274.2596         11        
+> 901
+file ../basic_extract/cps200710.dta saved
+ind has all characters numeric; ind02 generated as int
+(81541 differences between ind02 and ind90)
+(70279 real changes made)
+(ind90: 70279 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     81,647       53.83       53.83
+          2 |         10        0.01       53.83
+          3 |     70,024       46.17      100.00
+------------+-----------------------------------
+      Total |    151,681      100.00
+(10 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     70024    596.2624    273.1325         11        
+> 901
+file ../basic_extract/cps200711.dta saved
+ind has all characters numeric; ind02 generated as int
+(81971 differences between ind02 and ind90)
+(69623 real changes made)
+(ind90: 69623 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     82,056       54.18       54.18
+          2 |          9        0.01       54.19
+          3 |     69,375       45.81      100.00
+------------+-----------------------------------
+      Total |    151,440      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     69375    596.9155    272.3544         11        
+> 901
+file ../basic_extract/cps200712.dta saved
+2008
+ind has all characters numeric; ind02 generated as int
+(82466 differences between ind02 and ind90)
+(69630 real changes made)
+(ind90: 69630 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     82,557       54.33       54.33
+          2 |          9        0.01       54.34
+          3 |     69,380       45.66      100.00
+------------+-----------------------------------
+      Total |    151,946      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     69380    599.6956    271.1127         11        
+> 901
+file ../basic_extract/cps200801.dta saved
+ind has all characters numeric; ind02 generated as int
+(82652 differences between ind02 and ind90)
+(69615 real changes made)
+(ind90: 69615 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     82,727       54.39       54.39
+          2 |         10        0.01       54.40
+          3 |     69,360       45.60      100.00
+------------+-----------------------------------
+      Total |    152,097      100.00
+(10 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     69360    600.7641    271.2136         11        
+> 901
+file ../basic_extract/cps200802.dta saved
+ind has all characters numeric; ind02 generated as int
+(82274 differences between ind02 and ind90)
+(69195 real changes made)
+(ind90: 69195 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     82,384       54.44       54.44
+          2 |          9        0.01       54.45
+          3 |     68,935       45.55      100.00
+------------+-----------------------------------
+      Total |    151,328      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     68935    601.3249      271.33         11        
+> 901
+file ../basic_extract/cps200803.dta saved
+ind has all characters numeric; ind02 generated as int
+(82498 differences between ind02 and ind90)
+(69904 real changes made)
+(ind90: 69904 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     82,618       54.26       54.26
+          2 |          9        0.01       54.27
+          3 |     69,632       45.73      100.00
+------------+-----------------------------------
+      Total |    152,259      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     69632    601.3767    271.1305         11        
+> 901
+file ../basic_extract/cps200804.dta saved
+ind has all characters numeric; ind02 generated as int
+(82266 differences between ind02 and ind90)
+(70303 real changes made)
+(ind90: 70303 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     82,374       54.05       54.05
+          2 |          9        0.01       54.05
+          3 |     70,034       45.95      100.00
+------------+-----------------------------------
+      Total |    152,417      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     70034    599.5794     271.406         11        
+> 901
+file ../basic_extract/cps200805.dta saved
+ind has all characters numeric; ind02 generated as int
+(81588 differences between ind02 and ind90)
+(71023 real changes made)
+(ind90: 71023 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     81,735       53.61       53.61
+          2 |          9        0.01       53.61
+          3 |     70,732       46.39      100.00
+------------+-----------------------------------
+      Total |    152,476      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     70732    597.5559    272.3674         11        
+> 901
+file ../basic_extract/cps200806.dta saved
+ind has all characters numeric; ind02 generated as int
+(81347 differences between ind02 and ind90)
+(70969 real changes made)
+(ind90: 70969 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     81,499       53.56       53.56
+          2 |          9        0.01       53.56
+          3 |     70,660       46.44      100.00
+------------+-----------------------------------
+      Total |    152,168      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     70660     596.222     273.419         11        
+> 901
+file ../basic_extract/cps200807.dta saved
+ind has all characters numeric; ind02 generated as int
+(81300 differences between ind02 and ind90)
+(70755 real changes made)
+(ind90: 70755 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     81,487       53.64       53.64
+          2 |          9        0.01       53.65
+          3 |     70,421       46.35      100.00
+------------+-----------------------------------
+      Total |    151,917      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     70421    597.4791    273.0416         11        
+> 901
+file ../basic_extract/cps200808.dta saved
+ind has all characters numeric; ind02 generated as int
+(81704 differences between ind02 and ind90)
+(69593 real changes made)
+(ind90: 69593 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     81,901       54.18       54.18
+          2 |          9        0.01       54.19
+          3 |     69,246       45.81      100.00
+------------+-----------------------------------
+      Total |    151,156      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     69246    599.3095     273.035         11        
+> 901
+file ../basic_extract/cps200809.dta saved
+ind has all characters numeric; ind02 generated as int
+(81601 differences between ind02 and ind90)
+(69513 real changes made)
+(ind90: 69513 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     81,787       54.18       54.18
+          2 |          9        0.01       54.18
+          3 |     69,170       45.82      100.00
+------------+-----------------------------------
+      Total |    150,966      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     69170    601.5413    271.9973         11        
+> 901
+file ../basic_extract/cps200810.dta saved
+ind has all characters numeric; ind02 generated as int
+(81932 differences between ind02 and ind90)
+(69012 real changes made)
+(ind90: 69012 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     82,130       54.46       54.46
+          2 |          9        0.01       54.47
+          3 |     68,669       45.53      100.00
+------------+-----------------------------------
+      Total |    150,808      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     68669    602.6563    270.5292         11        
+> 901
+file ../basic_extract/cps200811.dta saved
+ind has all characters numeric; ind02 generated as int
+(82062 differences between ind02 and ind90)
+(67781 real changes made)
+(ind90: 67781 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     82,245       54.94       54.94
+          2 |          9        0.01       54.95
+          3 |     67,442       45.05      100.00
+------------+-----------------------------------
+      Total |    149,696      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     67442    604.1307    269.3452         11        
+> 901
+file ../basic_extract/cps200812.dta saved
+2009
+ind has all characters numeric; ind02 generated as int
+(82380 differences between ind02 and ind90)
+(69381 real changes made)
+(ind90: 69381 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     82,598       54.46       54.46
+          2 |          9        0.01       54.47
+          3 |     69,054       45.53      100.00
+------------+-----------------------------------
+      Total |    151,661      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     69054    604.3141    269.7148         11        
+> 901
+file ../basic_extract/cps200901.dta saved
+ind has all characters numeric; ind02 generated as int
+(82574 differences between ind02 and ind90)
+(69767 real changes made)
+(ind90: 69767 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     82,745       54.35       54.35
+          2 |          9        0.01       54.36
+          3 |     69,478       45.64      100.00
+------------+-----------------------------------
+      Total |    152,232      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     69478    604.9731    269.8391         11        
+> 901
+file ../basic_extract/cps200902.dta saved
+ind has all characters numeric; ind02 generated as int
+(82807 differences between ind02 and ind90)
+(69545 real changes made)
+(ind90: 69545 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     82,986       54.52       54.52
+          2 |          9        0.01       54.52
+          3 |     69,230       45.48      100.00
+------------+-----------------------------------
+      Total |    152,225      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     69230    604.7765    270.0846         11        
+> 901
+file ../basic_extract/cps200903.dta saved
+ind has all characters numeric; ind02 generated as int
+(83394 differences between ind02 and ind90)
+(70341 real changes made)
+(ind90: 70341 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     83,542       54.39       54.39
+          2 |          9        0.01       54.39
+          3 |     70,058       45.61      100.00
+------------+-----------------------------------
+      Total |    153,609      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     70058    605.2171    270.7573         11        
+> 901
+file ../basic_extract/cps200904.dta saved
+ind has all characters numeric; ind02 generated as int
+(82909 differences between ind02 and ind90)
+(70448 real changes made)
+(ind90: 70448 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     83,028       54.19       54.19
+          2 |          9        0.01       54.19
+          3 |     70,185       45.81      100.00
+------------+-----------------------------------
+      Total |    153,222      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     70185    603.0779    271.1135         11        
+> 901
+file ../basic_extract/cps200905.dta saved
+ind has all characters numeric; ind02 generated as int
+(82139 differences between ind02 and ind90)
+(71080 real changes made)
+(ind90: 71080 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     82,293       53.75       53.75
+          2 |          9        0.01       53.75
+          3 |     70,807       46.25      100.00
+------------+-----------------------------------
+      Total |    153,109      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     70807    603.0881    270.7435         11        
+> 901
+file ../basic_extract/cps200906.dta saved
+ind has all characters numeric; ind02 generated as int
+(81928 differences between ind02 and ind90)
+(70948 real changes made)
+(ind90: 70948 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     82,087       53.73       53.73
+          2 |          9        0.01       53.74
+          3 |     70,681       46.26      100.00
+------------+-----------------------------------
+      Total |    152,777      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     70681    601.9816    271.6774         11        
+> 901
+file ../basic_extract/cps200907.dta saved
+ind has all characters numeric; ind02 generated as int
+(82268 differences between ind02 and ind90)
+(70504 real changes made)
+(ind90: 70504 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     82,415       53.98       53.98
+          2 |          9        0.01       53.99
+          3 |     70,239       46.01      100.00
+------------+-----------------------------------
+      Total |    152,663      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     70239    601.7707    271.9972         11        
+> 901
+file ../basic_extract/cps200908.dta saved
+ind has all characters numeric; ind02 generated as int
+(82887 differences between ind02 and ind90)
+(69506 real changes made)
+(ind90: 69506 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     83,021       54.52       54.52
+          2 |          9        0.01       54.52
+          3 |     69,253       45.48      100.00
+------------+-----------------------------------
+      Total |    152,283      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     69253    604.1177    271.3701         11        
+> 901
+file ../basic_extract/cps200909.dta saved
+ind has all characters numeric; ind02 generated as int
+(83257 differences between ind02 and ind90)
+(69123 real changes made)
+(ind90: 69123 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     83,389       54.77       54.77
+          2 |          9        0.01       54.78
+          3 |     68,857       45.22      100.00
+------------+-----------------------------------
+      Total |    152,255      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     68857    606.8294    270.4518         11        
+> 901
+file ../basic_extract/cps200910.dta saved
+ind has all characters numeric; ind02 generated as int
+(83421 differences between ind02 and ind90)
+(69373 real changes made)
+(ind90: 69373 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     83,585       54.75       54.75
+          2 |          9        0.01       54.76
+          3 |     69,074       45.24      100.00
+------------+-----------------------------------
+      Total |    152,668      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     69074    608.2281    269.5151         11        
+> 901
+file ../basic_extract/cps200911.dta saved
+ind has all characters numeric; ind02 generated as int
+(83901 differences between ind02 and ind90)
+(68491 real changes made)
+(ind90: 68491 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,047       55.20       55.20
+          2 |          9        0.01       55.20
+          3 |     68,213       44.80      100.00
+------------+-----------------------------------
+      Total |    152,269      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     68213     610.342      268.18         11        
+> 901
+file ../basic_extract/cps200912.dta saved
+2010
+ind has all characters numeric; ind02 generated as int
+(83821 differences between ind02 and ind90)
+(69154 real changes made)
+(ind90: 69154 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     83,968       54.93       54.93
+          2 |          9        0.01       54.94
+          3 |     68,880       45.06      100.00
+------------+-----------------------------------
+      Total |    152,857      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     68880    610.1008    267.9939         11        
+> 901
+file ../basic_extract/cps201001.dta saved
+ind has all characters numeric; ind02 generated as int
+(83789 differences between ind02 and ind90)
+(69821 real changes made)
+(ind90: 69821 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     83,961       54.70       54.70
+          2 |          9        0.01       54.70
+          3 |     69,537       45.30      100.00
+------------+-----------------------------------
+      Total |    153,507      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     69537    608.1206    269.8038         11        
+> 901
+file ../basic_extract/cps201002.dta saved
+ind has all characters numeric; ind02 generated as int
+(83904 differences between ind02 and ind90)
+(69309 real changes made)
+(ind90: 69309 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,075       54.91       54.91
+          2 |          9        0.01       54.91
+          3 |     69,037       45.09      100.00
+------------+-----------------------------------
+      Total |    153,121      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     69037    607.6278    269.8904         11        
+> 901
+file ../basic_extract/cps201003.dta saved
+ind has all characters numeric; ind02 generated as int
+(84206 differences between ind02 and ind90)
+(70095 real changes made)
+(ind90: 70095 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,394       54.73       54.73
+          2 |          9        0.01       54.73
+          3 |     69,805       45.27      100.00
+------------+-----------------------------------
+      Total |    154,208      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     69805    608.0566    269.4361         11        
+> 901
+file ../basic_extract/cps201004.dta saved
+ind has all characters numeric; ind02 generated as int
+(84556 differences between ind02 and ind90)
+(69523 real changes made)
+(ind90: 69523 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,762       55.04       55.04
+          2 |          9        0.01       55.05
+          3 |     69,223       44.95      100.00
+------------+-----------------------------------
+      Total |    153,994      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     69223    607.8005    269.2431         11        
+> 901
+file ../basic_extract/cps201005.dta saved
+ind has all characters numeric; ind02 generated as int
+(84193 differences between ind02 and ind90)
+(69555 real changes made)
+(ind90: 69555 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,394       54.93       54.93
+          2 |          9        0.01       54.93
+          3 |     69,239       45.07      100.00
+------------+-----------------------------------
+      Total |    153,642      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     69239    607.5298    269.6319         11        
+> 901
+file ../basic_extract/cps201006.dta saved
+ind has all characters numeric; ind02 generated as int
+(84007 differences between ind02 and ind90)
+(69815 real changes made)
+(ind90: 69815 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,192       54.77       54.77
+          2 |          9        0.01       54.78
+          3 |     69,513       45.22      100.00
+------------+-----------------------------------
+      Total |    153,714      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     69513    606.1609    269.7364         11        
+> 901
+file ../basic_extract/cps201007.dta saved
+ind has all characters numeric; ind02 generated as int
+(83980 differences between ind02 and ind90)
+(69578 real changes made)
+(ind90: 69578 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,167       54.85       54.85
+          2 |          9        0.01       54.85
+          3 |     69,277       45.15      100.00
+------------+-----------------------------------
+      Total |    153,453      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     69277    606.2621    269.6123         11        
+> 901
+file ../basic_extract/cps201008.dta saved
+ind has all characters numeric; ind02 generated as int
+(83870 differences between ind02 and ind90)
+(68877 real changes made)
+(ind90: 68877 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,055       55.07       55.07
+          2 |         10        0.01       55.08
+          3 |     68,572       44.92      100.00
+------------+-----------------------------------
+      Total |    152,637      100.00
+(10 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     68572    608.4615    268.8074         11        
+> 901
+file ../basic_extract/cps201009.dta saved
+ind has all characters numeric; ind02 generated as int
+(83979 differences between ind02 and ind90)
+(68809 real changes made)
+(ind90: 68809 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,157       55.12       55.12
+          2 |          9        0.01       55.13
+          3 |     68,508       44.87      100.00
+------------+-----------------------------------
+      Total |    152,674      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     68508    608.9789    269.1669         11        
+> 901
+file ../basic_extract/cps201010.dta saved
+ind has all characters numeric; ind02 generated as int
+(83785 differences between ind02 and ind90)
+(68515 real changes made)
+(ind90: 68515 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     83,936       55.16       55.16
+          2 |          9        0.01       55.16
+          3 |     68,226       44.84      100.00
+------------+-----------------------------------
+      Total |    152,171      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     68226    611.0291    267.6205         11        
+> 901
+file ../basic_extract/cps201011.dta saved
+ind has all characters numeric; ind02 generated as int
+(84019 differences between ind02 and ind90)
+(68487 real changes made)
+(ind90: 68487 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,158       55.22       55.22
+          2 |          9        0.01       55.23
+          3 |     68,226       44.77      100.00
+------------+-----------------------------------
+      Total |    152,393      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     68226    611.9976     266.878         11        
+> 901
+file ../basic_extract/cps201012.dta saved
+2011
+ind has all characters numeric; ind02 generated as int
+(84003 differences between ind02 and ind90)
+(68260 real changes made)
+(ind90: 68260 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,190       55.34       55.34
+          2 |          9        0.01       55.34
+          3 |     67,938       44.66      100.00
+------------+-----------------------------------
+      Total |    152,137      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     67938    612.4922    266.4037         11        
+> 901
+file ../basic_extract/cps201101.dta saved
+ind has all characters numeric; ind02 generated as int
+(83490 differences between ind02 and ind90)
+(67959 real changes made)
+(ind90: 67959 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     83,703       55.31       55.31
+          2 |          9        0.01       55.31
+          3 |     67,627       44.69      100.00
+------------+-----------------------------------
+      Total |    151,339      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     67627    612.0087    267.3324         11        
+> 901
+file ../basic_extract/cps201102.dta saved
+ind has all characters numeric; ind02 generated as int
+(83355 differences between ind02 and ind90)
+(67359 real changes made)
+(ind90: 67359 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     83,593       55.50       55.50
+          2 |          9        0.01       55.51
+          3 |     67,007       44.49      100.00
+------------+-----------------------------------
+      Total |    150,609      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     67007     612.897    267.3023         11        
+> 901
+file ../basic_extract/cps201103.dta saved
+ind has all characters numeric; ind02 generated as int
+(83771 differences between ind02 and ind90)
+(67795 real changes made)
+(ind90: 67795 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,041       55.49       55.49
+          2 |          9        0.01       55.50
+          3 |     67,405       44.50      100.00
+------------+-----------------------------------
+      Total |    151,455      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     67405    611.8875      267.87         11        
+> 901
+file ../basic_extract/cps201104.dta saved
+ind has all characters numeric; ind02 generated as int
+(84154 differences between ind02 and ind90)
+(68284 real changes made)
+(ind90: 68284 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,426       55.42       55.42
+          2 |          9        0.01       55.43
+          3 |     67,894       44.57      100.00
+------------+-----------------------------------
+      Total |    152,329      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     67894    610.8387    268.0188         11        
+> 901
+file ../basic_extract/cps201105.dta saved
+ind has all characters numeric; ind02 generated as int
+(84078 differences between ind02 and ind90)
+(67933 real changes made)
+(ind90: 67933 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,329       55.52       55.52
+          2 |          9        0.01       55.52
+          3 |     67,555       44.48      100.00
+------------+-----------------------------------
+      Total |    151,893      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     67555    608.6216    268.9087         11        
+> 901
+file ../basic_extract/cps201106.dta saved
+ind has all characters numeric; ind02 generated as int
+(84224 differences between ind02 and ind90)
+(68151 real changes made)
+(ind90: 68151 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,496       55.49       55.49
+          2 |          9        0.01       55.50
+          3 |     67,764       44.50      100.00
+------------+-----------------------------------
+      Total |    152,269      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     67764    607.8615    269.5063         11        
+> 901
+file ../basic_extract/cps201107.dta saved
+ind has all characters numeric; ind02 generated as int
+(84589 differences between ind02 and ind90)
+(67958 real changes made)
+(ind90: 67958 changes made)
+(note: you are using old merge syntax; see [D] merge for new
+syntax)
+variable ind90 does not uniquely identify observations in the
+    master data
+
+     _merge |      Freq.     Percent        Cum.
+------------+-----------------------------------
+          1 |     84,873       55.67       55.67
+          2 |          9        0.01       55.68
+          3 |     67,565       44.32      100.00
+------------+-----------------------------------
+      Total |    152,447      100.00
+(9 observations deleted)
+
+    Variable |       Obs        Mean    Std. Dev.       Min        
+> Max
+-------------+-----------------------------------------------------
+> ---
+     ind7090 |     67565    608.0577    269.7564         11        
+> 901
+file ../basic_extract/cps201108.dta saved
+
+. 
+. log close
+      name:  <unnamed>
+       log:  /data/uctprgu/cps/program/log_match_ind.log
+  log type:  text
+ closed on:   2 May 2012, 23:39:51
+-------------------------------------------------------------------

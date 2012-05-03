@@ -18,11 +18,11 @@ while(date <= 201012) {
     date == 199411 | date == 199412 | date == 199501 | date == 199502 | 
     date == 199503 | date == 199504 | date == 199505 | date == 199506 | 
     date == 199507 | date == 199508) {
-    cat(date,"\n")
+    cat(date)
     t <- date + 100
     r1 <- data.frame(date = t , corr = NA, df = NA)
   } else {
-    cat(date,"\n")
+    cat(date)
     # loading the data 
     path <- paste("../result/copula",date,".dta",sep="")
     data <- read.dta(path)

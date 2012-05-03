@@ -24,7 +24,7 @@ do copula3
 clear
 
 * generate all series relating cps basic monthly files* 
-do match_basic   
+do match_master  
 clear
 
 * merge the data series together

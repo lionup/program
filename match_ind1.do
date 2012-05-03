@@ -10,12 +10,12 @@ set more 1
 log using log_match_ind1, text replace
 
 local x = 197601
-while `x' < 201108 {
+while `x' <= 201108 {
   use ../basic_extract/cps`x'.dta, clear
   * keep only the records at least 16 years old, employed, and with no missing value on education and ind7090 
   keep if age >= 16
   keep if status == 1 | status == 2
-  drop if educ6c == . | mind7090 = .
+  drop if educ6c == . | mind7090 == .
 
   * create sorting variable "indEduc" categoried by industry and education
   tostring educ6c, gen(educ2)
@@ -25,8 +25,8 @@ while `x' < 201108 {
   sort indEduc
 
   * sum weight for each category  
-  replace fweight = 0 if fweight = .
-  egen double I = sum(fweight) by
+  replace fweight = 0 if fweight == .
+  egen double I = sum(fweight), by (indEduc)
   replace I = I / 1000
   if `x' > 199400 { 
 	replace I = I / 100
@@ -58,6 +58,12 @@ while `x' < 201108 {
     }
   }
   drop I*
+  
+  foreach m of numlist `r(numlist)' { 
+    forvalues n = 1/6 {
+      label var i`m'e`n' "employment share of education level `n' in industry `m'"
+    }
+  }
 
    * generate sorting variables
   gen year = int( date /100 )

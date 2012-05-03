@@ -84,7 +84,7 @@ saveold ../result/basic.dta, replace
 
 *** Take the Bleakley/Ritter data
 clear 
-use ../result/flows_67
+use flows_67
 keep if date <= 197601
 keep date flowsEU flowsUE
 order _all, alpha

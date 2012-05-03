@@ -17,7 +17,7 @@ while `x' <= 201108 {
   
   /* 6 education categories */
   
-  if 197901 <= `x' & `x' <= 199112 {
+  if `x' <= 199112 {
   gen byte educ6c = 1 if 0 <= educ & educ <= 8  /* dropouts before high school */
   replace educ6c = 2 if 9 <= educ & educ<=11 /* dropouts during high school */
   replace educ6c = 3 if educ == 12  /* high school graduates */

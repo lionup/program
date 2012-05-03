@@ -9,6 +9,8 @@ set more 1
 
 local sort year qtr month date t
 
+*merge unemployment, vacancy, productivity, E2U, U2E, J2J, wage percentiles, copula parameters, and flows between wage deciles
+
 use ../BLS/unemployment_raw_m.dta
 
 merge 1:1 `sort' using ../BLS/prod_raw_q.dta
@@ -30,13 +32,13 @@ sort `sort'
 merge 1:1 `sort' using ../result/sa_basic.dta
 drop _merge
 sort `sort'
-label var SA_EU "montly E2U flows seasonally adjusted"
-label var SA_UE "montly U2E flows seasonally adjusted"
+label var SA_EU "E2U flows seasonally adjusted"
+label var SA_UE "U2E flows seasonally adjusted"
 
 merge 1:1 `sort' using ../result/sa_j2j.dta
 drop _merge
 sort `sort'
-label var SA_J2J "montly J2J flows seasonally adjusted"
+label var SA_J2J "J2J flows seasonally adjusted"
 
 
 merge 1:1 `sort' using ../result/sa_copula.dta
@@ -63,6 +65,34 @@ forvalues m = 1/10 {
 }
 
 saveold ../result/final.dta, replace
+
+
+
+*merge the following series by education levels: unemployment, E2U, U2E, J2J
+use ../result/edu_ur.dta
+forvalues i = 1/6 {
+  label var ur`i'  "unemployment rate of education level `i'"
+  label var epr`i'  "employment population ratio of education level `i'"
+}
+
+merge 1:1 `sort' using ../result/edu_basic.dta
+drop _merge
+sort `sort'
+forvalues i = 1/6 {
+  label var flowEU`i' "E2U flows of education level `i'"
+  label var flowUE`i' "U2E flows of education level `i'"
+}
+
+merge 1:1 `sort' using ../result/edu_j2j.dta
+drop _merge
+sort `sort'
+forvalues i = 1/6 {
+  label var flowJ2J`i' "J2J flows of education level `i'"
+}
+
+
+saveold ../result/edu.dta, replace
+
 
 log close
 

@@ -1,0 +1,1186 @@
+-----------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /data/uctprgu/cps/program/log_copula1.log
+  log type:  text
+ opened on:   2 May 2012, 21:00:36
+
+. set more 1
+
+. 
+. capture program drop copula2
+
+. program define copula2
+  1.   copula3 `1' 1  `1'01
+  2.   copula3 `1' 2  `1'02
+  3.   copula3 `1' 3  `1'03
+  4.   copula3 `1' 4  `1'04
+  5.   copula3 `1' 5  `1'05
+  6.   copula3 `1' 6  `1'06
+  7.   copula3 `1' 7  `1'07
+  8.   copula3 `1' 8  `1'08
+  9.   copula3 `1' 9  `1'09
+ 10.   copula3 `1' 10 `1'10
+ 11.   copula3 `1' 11 `1'11
+ 12.   copula3 `1' 12 `1'12
+ 13. end
+
+. 
+. capture program drop copula3
+
+. program define copula3
+  1.   ** Matching is not possible due to sample redesigns between
+.   ** Jul to Dec 1984 4s to their 1985 8s
+.   ** Jan to Sep 1985 4s to their 1986 8s
+.   ** Jun to Dec 1994 4s to their 1995 8s
+.   ** Jan to Aug 1995 4s to their 1996 8s
+.   if (`3' != 198407 & `3' != 198408 & `3' != 198409 & `3' != 198410 /*
+>         */ & `3' != 198411 & `3' != 198412 & `3' != 198501 & `3' != 198502 /*
+>         */ & `3' != 198503 & `3' != 198504 & `3' != 198505 & `3' != 198506 /*
+>         */ & `3' != 198507 & `3' != 198508 & `3' != 198509 & `3' != 199406 /*
+>         */ & `3' != 199407 & `3' != 199408 & `3' != 199409 & `3' != 199410 /*
+>         */ & `3' != 199411 & `3' != 199412 & `3' != 199501 & `3' != 199502 /*
+>         */ & `3' != 199503 & `3' != 199504 & `3' != 199505 & `3' != 199506 /*
+>         */ & `3' != 199507 & `3' != 199508) {
+  2.       clear 
+  3.       use ../basic_extract/org_merg`1' if month == `2' 
+  4.           * keep only the observations have wage information in both months
+.       keep if w_ln_no != . & mw_ln_no != . 
+  5.           keep w_ln_no mw_ln_no
+  6.           saveold ../result/copula`3'     
+  7.     }
+  8. end 
+
+. 
+. copula2 1979
+(CEPR ORG Extract, Version 1.7.0, 1979)
+(5584 observations deleted)
+file ../result/copula197901.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1979)
+(5627 observations deleted)
+file ../result/copula197902.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1979)
+(5443 observations deleted)
+file ../result/copula197903.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1979)
+(5675 observations deleted)
+file ../result/copula197904.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1979)
+(5557 observations deleted)
+file ../result/copula197905.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1979)
+(5417 observations deleted)
+file ../result/copula197906.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1979)
+(5758 observations deleted)
+file ../result/copula197907.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1979)
+(5469 observations deleted)
+file ../result/copula197908.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1979)
+(5812 observations deleted)
+file ../result/copula197909.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1979)
+(5734 observations deleted)
+file ../result/copula197910.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1979)
+(5579 observations deleted)
+file ../result/copula197911.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1979)
+(5902 observations deleted)
+file ../result/copula197912.dta saved
+
+. copula2 1980 
+(CEPR ORG Extract, Version 1.7.0, 1980)
+(6536 observations deleted)
+file ../result/copula198001.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1980)
+(6764 observations deleted)
+file ../result/copula198002.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1980)
+(6977 observations deleted)
+file ../result/copula198003.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1980)
+(6788 observations deleted)
+file ../result/copula198004.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1980)
+(6002 observations deleted)
+file ../result/copula198005.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1980)
+(5955 observations deleted)
+file ../result/copula198006.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1980)
+(6071 observations deleted)
+file ../result/copula198007.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1980)
+(6177 observations deleted)
+file ../result/copula198008.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1980)
+(6087 observations deleted)
+file ../result/copula198009.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1980)
+(5992 observations deleted)
+file ../result/copula198010.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1980)
+(6231 observations deleted)
+file ../result/copula198011.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1980)
+(6294 observations deleted)
+file ../result/copula198012.dta saved
+
+. copula2 1981 
+(CEPR ORG Extract, Version 1.7.0, 1981)
+(6266 observations deleted)
+file ../result/copula198101.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1981)
+(6278 observations deleted)
+file ../result/copula198102.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1981)
+(6261 observations deleted)
+file ../result/copula198103.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1981)
+(6079 observations deleted)
+file ../result/copula198104.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1981)
+(6052 observations deleted)
+file ../result/copula198105.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1981)
+(5895 observations deleted)
+file ../result/copula198106.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1981)
+(6296 observations deleted)
+file ../result/copula198107.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1981)
+(6299 observations deleted)
+file ../result/copula198108.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1981)
+(6404 observations deleted)
+file ../result/copula198109.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1981)
+(6376 observations deleted)
+file ../result/copula198110.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1981)
+(6389 observations deleted)
+file ../result/copula198111.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1981)
+(6580 observations deleted)
+file ../result/copula198112.dta saved
+
+. copula2 1982 
+(CEPR ORG Extract, Version 1.7.0, 1982)
+(6403 observations deleted)
+file ../result/copula198201.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1982)
+(6282 observations deleted)
+file ../result/copula198202.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1982)
+(6161 observations deleted)
+file ../result/copula198203.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1982)
+(6387 observations deleted)
+file ../result/copula198204.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1982)
+(6276 observations deleted)
+file ../result/copula198205.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1982)
+(6169 observations deleted)
+file ../result/copula198206.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1982)
+(6368 observations deleted)
+file ../result/copula198207.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1982)
+(6392 observations deleted)
+file ../result/copula198208.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1982)
+(6050 observations deleted)
+file ../result/copula198209.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1982)
+(6140 observations deleted)
+file ../result/copula198210.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1982)
+(6281 observations deleted)
+file ../result/copula198211.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1982)
+(6322 observations deleted)
+file ../result/copula198212.dta saved
+
+. copula2 1983
+(CEPR ORG Extract, Version 1.7.0, 1983)
+(6237 observations deleted)
+file ../result/copula198301.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1983)
+(6303 observations deleted)
+file ../result/copula198302.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1983)
+(6041 observations deleted)
+file ../result/copula198303.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1983)
+(6301 observations deleted)
+file ../result/copula198304.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1983)
+(5933 observations deleted)
+file ../result/copula198305.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1983)
+(5909 observations deleted)
+file ../result/copula198306.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1983)
+(6134 observations deleted)
+file ../result/copula198307.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1983)
+(6081 observations deleted)
+file ../result/copula198308.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1983)
+(6157 observations deleted)
+file ../result/copula198309.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1983)
+(6035 observations deleted)
+file ../result/copula198310.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1983)
+(5922 observations deleted)
+file ../result/copula198311.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1983)
+(6359 observations deleted)
+file ../result/copula198312.dta saved
+
+. copula2 1984
+(CEPR ORG Extract, Version 1.7.0, 1984)
+(6137 observations deleted)
+file ../result/copula198401.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1984)
+(6012 observations deleted)
+file ../result/copula198402.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1984)
+(5853 observations deleted)
+file ../result/copula198403.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1984)
+(6056 observations deleted)
+file ../result/copula198404.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1984)
+(5794 observations deleted)
+file ../result/copula198405.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1984)
+(5083 observations deleted)
+file ../result/copula198406.dta saved
+
+. copula2 1985 
+(CEPR ORG Extract, Version 1.7.0, 1985)
+(5666 observations deleted)
+file ../result/copula198510.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1985)
+(5778 observations deleted)
+file ../result/copula198511.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1985)
+(5490 observations deleted)
+file ../result/copula198512.dta saved
+
+. copula2 1986 
+(CEPR ORG Extract, Version 1.7.0, 1986)
+(5679 observations deleted)
+file ../result/copula198601.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1986)
+(5671 observations deleted)
+file ../result/copula198602.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1986)
+(5603 observations deleted)
+file ../result/copula198603.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1986)
+(5462 observations deleted)
+file ../result/copula198604.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1986)
+(5411 observations deleted)
+file ../result/copula198605.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1986)
+(5498 observations deleted)
+file ../result/copula198606.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1986)
+(5428 observations deleted)
+file ../result/copula198607.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1986)
+(5414 observations deleted)
+file ../result/copula198608.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1986)
+(5599 observations deleted)
+file ../result/copula198609.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1986)
+(5510 observations deleted)
+file ../result/copula198610.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1986)
+(5532 observations deleted)
+file ../result/copula198611.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1986)
+(5550 observations deleted)
+file ../result/copula198612.dta saved
+
+. copula2 1987 
+(CEPR ORG Extract, Version 1.7.0, 1987)
+(5610 observations deleted)
+file ../result/copula198701.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1987)
+(5584 observations deleted)
+file ../result/copula198702.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1987)
+(5377 observations deleted)
+file ../result/copula198703.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1987)
+(5258 observations deleted)
+file ../result/copula198704.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1987)
+(5099 observations deleted)
+file ../result/copula198705.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1987)
+(5216 observations deleted)
+file ../result/copula198706.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1987)
+(5230 observations deleted)
+file ../result/copula198707.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1987)
+(5149 observations deleted)
+file ../result/copula198708.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1987)
+(5157 observations deleted)
+file ../result/copula198709.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1987)
+(5304 observations deleted)
+file ../result/copula198710.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1987)
+(5172 observations deleted)
+file ../result/copula198711.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1987)
+(5239 observations deleted)
+file ../result/copula198712.dta saved
+
+. copula2 1988 
+(CEPR ORG Extract, Version 1.7.0, 1988)
+(5174 observations deleted)
+file ../result/copula198801.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1988)
+(5047 observations deleted)
+file ../result/copula198802.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1988)
+(5110 observations deleted)
+file ../result/copula198803.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1988)
+(4899 observations deleted)
+file ../result/copula198804.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1988)
+(5052 observations deleted)
+file ../result/copula198805.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1988)
+(5079 observations deleted)
+file ../result/copula198806.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1988)
+(5103 observations deleted)
+file ../result/copula198807.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1988)
+(5153 observations deleted)
+file ../result/copula198808.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1988)
+(4916 observations deleted)
+file ../result/copula198809.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1988)
+(5077 observations deleted)
+file ../result/copula198810.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1988)
+(5249 observations deleted)
+file ../result/copula198811.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1988)
+(5103 observations deleted)
+file ../result/copula198812.dta saved
+
+. copula2 1989 
+(CEPR ORG Extract, Version 1.7.0, 1989)
+(5199 observations deleted)
+file ../result/copula198901.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1989)
+(5363 observations deleted)
+file ../result/copula198902.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1989)
+(5180 observations deleted)
+file ../result/copula198903.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1989)
+(5250 observations deleted)
+file ../result/copula198904.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1989)
+(4982 observations deleted)
+file ../result/copula198905.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1989)
+(5028 observations deleted)
+file ../result/copula198906.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1989)
+(5432 observations deleted)
+file ../result/copula198907.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1989)
+(5392 observations deleted)
+file ../result/copula198908.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1989)
+(5313 observations deleted)
+file ../result/copula198909.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1989)
+(5492 observations deleted)
+file ../result/copula198910.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1989)
+(5451 observations deleted)
+file ../result/copula198911.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1989)
+(5633 observations deleted)
+file ../result/copula198912.dta saved
+
+. copula2 1990 
+(CEPR ORG Extract, Version 1.7.0, 1990)
+(5656 observations deleted)
+file ../result/copula199001.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1990)
+(5464 observations deleted)
+file ../result/copula199002.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1990)
+(5643 observations deleted)
+file ../result/copula199003.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1990)
+(5433 observations deleted)
+file ../result/copula199004.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1990)
+(5791 observations deleted)
+file ../result/copula199005.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1990)
+(5380 observations deleted)
+file ../result/copula199006.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1990)
+(5570 observations deleted)
+file ../result/copula199007.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1990)
+(5557 observations deleted)
+file ../result/copula199008.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1990)
+(5561 observations deleted)
+file ../result/copula199009.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1990)
+(5501 observations deleted)
+file ../result/copula199010.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1990)
+(5745 observations deleted)
+file ../result/copula199011.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1990)
+(5526 observations deleted)
+file ../result/copula199012.dta saved
+
+. copula2 1991 
+(CEPR ORG Extract, Version 1.7.0, 1991)
+(5619 observations deleted)
+file ../result/copula199101.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1991)
+(5757 observations deleted)
+file ../result/copula199102.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1991)
+(5336 observations deleted)
+file ../result/copula199103.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1991)
+(5633 observations deleted)
+file ../result/copula199104.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1991)
+(5602 observations deleted)
+file ../result/copula199105.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1991)
+(5486 observations deleted)
+file ../result/copula199106.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1991)
+(5408 observations deleted)
+file ../result/copula199107.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1991)
+(5431 observations deleted)
+file ../result/copula199108.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1991)
+(5390 observations deleted)
+file ../result/copula199109.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1991)
+(5584 observations deleted)
+file ../result/copula199110.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1991)
+(5457 observations deleted)
+file ../result/copula199111.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1991)
+(5634 observations deleted)
+file ../result/copula199112.dta saved
+
+. copula2 1992 
+(CEPR ORG Extract, Version 1.7.0, 1992)
+(5403 observations deleted)
+file ../result/copula199201.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1992)
+(5723 observations deleted)
+file ../result/copula199202.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1992)
+(5597 observations deleted)
+file ../result/copula199203.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1992)
+(5395 observations deleted)
+file ../result/copula199204.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1992)
+(5400 observations deleted)
+file ../result/copula199205.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1992)
+(5276 observations deleted)
+file ../result/copula199206.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1992)
+(5359 observations deleted)
+file ../result/copula199207.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1992)
+(5415 observations deleted)
+file ../result/copula199208.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1992)
+(5427 observations deleted)
+file ../result/copula199209.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1992)
+(5495 observations deleted)
+file ../result/copula199210.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1992)
+(5457 observations deleted)
+file ../result/copula199211.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1992)
+(5435 observations deleted)
+file ../result/copula199212.dta saved
+
+. copula2 1993 
+(CEPR ORG Extract, Version 1.7.0, 1993)
+(5493 observations deleted)
+file ../result/copula199301.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1993)
+(5446 observations deleted)
+file ../result/copula199302.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1993)
+(5212 observations deleted)
+file ../result/copula199303.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1993)
+(5480 observations deleted)
+file ../result/copula199304.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1993)
+(5386 observations deleted)
+file ../result/copula199305.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1993)
+(5360 observations deleted)
+file ../result/copula199306.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1993)
+(5505 observations deleted)
+file ../result/copula199307.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1993)
+(5088 observations deleted)
+file ../result/copula199308.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1993)
+(5359 observations deleted)
+file ../result/copula199309.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1993)
+(5413 observations deleted)
+file ../result/copula199310.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1993)
+(4742 observations deleted)
+file ../result/copula199311.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1993)
+(4748 observations deleted)
+file ../result/copula199312.dta saved
+
+. copula2 1994 
+(CEPR ORG Extract, Version 1.7.0, 1994)
+(4915 observations deleted)
+file ../result/copula199401.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1994)
+(4796 observations deleted)
+file ../result/copula199402.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1994)
+(4974 observations deleted)
+file ../result/copula199403.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1994)
+(4875 observations deleted)
+file ../result/copula199404.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1994)
+(4721 observations deleted)
+file ../result/copula199405.dta saved
+
+. copula2 1995 
+(CEPR ORG Extract, Version 1.7.0, 1995)
+(4638 observations deleted)
+file ../result/copula199509.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1995)
+(4624 observations deleted)
+file ../result/copula199510.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1995)
+(4604 observations deleted)
+file ../result/copula199511.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1995)
+(4680 observations deleted)
+file ../result/copula199512.dta saved
+
+. copula2 1996 
+(CEPR ORG Extract, Version 1.7.0, 1996)
+(4674 observations deleted)
+file ../result/copula199601.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1996)
+(4602 observations deleted)
+file ../result/copula199602.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1996)
+(4647 observations deleted)
+file ../result/copula199603.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1996)
+(4612 observations deleted)
+file ../result/copula199604.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1996)
+(4516 observations deleted)
+file ../result/copula199605.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1996)
+(4569 observations deleted)
+file ../result/copula199606.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1996)
+(4668 observations deleted)
+file ../result/copula199607.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1996)
+(4693 observations deleted)
+file ../result/copula199608.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1996)
+(4728 observations deleted)
+file ../result/copula199609.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1996)
+(4660 observations deleted)
+file ../result/copula199610.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1996)
+(4711 observations deleted)
+file ../result/copula199611.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1996)
+(4654 observations deleted)
+file ../result/copula199612.dta saved
+
+. copula2 1997 
+(CEPR ORG Extract, Version 1.7.0, 1997)
+(4804 observations deleted)
+file ../result/copula199701.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1997)
+(4524 observations deleted)
+file ../result/copula199702.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1997)
+(4629 observations deleted)
+file ../result/copula199703.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1997)
+(4595 observations deleted)
+file ../result/copula199704.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1997)
+(4502 observations deleted)
+file ../result/copula199705.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1997)
+(4545 observations deleted)
+file ../result/copula199706.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1997)
+(4566 observations deleted)
+file ../result/copula199707.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1997)
+(4520 observations deleted)
+file ../result/copula199708.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1997)
+(4602 observations deleted)
+file ../result/copula199709.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1997)
+(4613 observations deleted)
+file ../result/copula199710.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1997)
+(4745 observations deleted)
+file ../result/copula199711.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1997)
+(4612 observations deleted)
+file ../result/copula199712.dta saved
+
+. copula2 1998 
+(CEPR ORG Extract, Version 1.7.0, 1998)
+(4628 observations deleted)
+file ../result/copula199801.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1998)
+(4700 observations deleted)
+file ../result/copula199802.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1998)
+(4477 observations deleted)
+file ../result/copula199803.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1998)
+(4505 observations deleted)
+file ../result/copula199804.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1998)
+(4492 observations deleted)
+file ../result/copula199805.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1998)
+(4486 observations deleted)
+file ../result/copula199806.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1998)
+(4724 observations deleted)
+file ../result/copula199807.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1998)
+(4655 observations deleted)
+file ../result/copula199808.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1998)
+(4618 observations deleted)
+file ../result/copula199809.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1998)
+(4643 observations deleted)
+file ../result/copula199810.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1998)
+(4583 observations deleted)
+file ../result/copula199811.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1998)
+(4453 observations deleted)
+file ../result/copula199812.dta saved
+
+. copula2 1999 
+(CEPR ORG Extract, Version 1.7.0, 1999)
+(4759 observations deleted)
+file ../result/copula199901.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1999)
+(4609 observations deleted)
+file ../result/copula199902.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1999)
+(4588 observations deleted)
+file ../result/copula199903.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1999)
+(4480 observations deleted)
+file ../result/copula199904.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1999)
+(4505 observations deleted)
+file ../result/copula199905.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1999)
+(4640 observations deleted)
+file ../result/copula199906.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1999)
+(4482 observations deleted)
+file ../result/copula199907.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1999)
+(4670 observations deleted)
+file ../result/copula199908.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1999)
+(4801 observations deleted)
+file ../result/copula199909.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1999)
+(4606 observations deleted)
+file ../result/copula199910.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1999)
+(4810 observations deleted)
+file ../result/copula199911.dta saved
+(CEPR ORG Extract, Version 1.7.0, 1999)
+(4614 observations deleted)
+file ../result/copula199912.dta saved
+
+. copula2 2000
+(CEPR ORG Extract, Version 1.7.0, 2000)
+(4662 observations deleted)
+file ../result/copula200001.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2000)
+(4619 observations deleted)
+file ../result/copula200002.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2000)
+(4357 observations deleted)
+file ../result/copula200003.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2000)
+(4522 observations deleted)
+file ../result/copula200004.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2000)
+(4447 observations deleted)
+file ../result/copula200005.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2000)
+(4418 observations deleted)
+file ../result/copula200006.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2000)
+(4465 observations deleted)
+file ../result/copula200007.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2000)
+(4392 observations deleted)
+file ../result/copula200008.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2000)
+(4680 observations deleted)
+file ../result/copula200009.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2000)
+(4600 observations deleted)
+file ../result/copula200010.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2000)
+(4461 observations deleted)
+file ../result/copula200011.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2000)
+(4471 observations deleted)
+file ../result/copula200012.dta saved
+
+. copula2 2001
+(CEPR ORG Extract, Version 1.7.0, 2001)
+(4584 observations deleted)
+file ../result/copula200101.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2001)
+(4111 observations deleted)
+file ../result/copula200102.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2001)
+(4067 observations deleted)
+file ../result/copula200103.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2001)
+(3967 observations deleted)
+file ../result/copula200104.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2001)
+(4039 observations deleted)
+file ../result/copula200105.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2001)
+(4090 observations deleted)
+file ../result/copula200106.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2001)
+(4981 observations deleted)
+file ../result/copula200107.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2001)
+(4960 observations deleted)
+file ../result/copula200108.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2001)
+(4961 observations deleted)
+file ../result/copula200109.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2001)
+(4938 observations deleted)
+file ../result/copula200110.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2001)
+(5135 observations deleted)
+file ../result/copula200111.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2001)
+(4871 observations deleted)
+file ../result/copula200112.dta saved
+
+. copula2 2002
+(CEPR ORG Extract, Version 1.7.0, 2002)
+(4748 observations deleted)
+file ../result/copula200201.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2002)
+(5101 observations deleted)
+file ../result/copula200202.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2002)
+(4944 observations deleted)
+file ../result/copula200203.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2002)
+(5187 observations deleted)
+file ../result/copula200204.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2002)
+(5019 observations deleted)
+file ../result/copula200205.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2002)
+(5118 observations deleted)
+file ../result/copula200206.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2002)
+(5310 observations deleted)
+file ../result/copula200207.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2002)
+(5059 observations deleted)
+file ../result/copula200208.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2002)
+(5134 observations deleted)
+file ../result/copula200209.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2002)
+(5424 observations deleted)
+file ../result/copula200210.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2002)
+(5158 observations deleted)
+file ../result/copula200211.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2002)
+(5139 observations deleted)
+file ../result/copula200212.dta saved
+
+. copula2 2003
+(CEPR ORG Extract, Version 1.7.0, 2003)
+(5415 observations deleted)
+file ../result/copula200301.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2003)
+(5261 observations deleted)
+file ../result/copula200302.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2003)
+(5404 observations deleted)
+file ../result/copula200303.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2003)
+(5296 observations deleted)
+file ../result/copula200304.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2003)
+(5371 observations deleted)
+file ../result/copula200305.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2003)
+(5419 observations deleted)
+file ../result/copula200306.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2003)
+(4907 observations deleted)
+file ../result/copula200307.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2003)
+(5138 observations deleted)
+file ../result/copula200308.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2003)
+(5051 observations deleted)
+file ../result/copula200309.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2003)
+(4929 observations deleted)
+file ../result/copula200310.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2003)
+(4538 observations deleted)
+file ../result/copula200311.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2003)
+(4331 observations deleted)
+file ../result/copula200312.dta saved
+
+. copula2 2004
+(CEPR ORG Extract, Version 1.7.0, 2004)
+(4438 observations deleted)
+file ../result/copula200401.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2004)
+(4497 observations deleted)
+file ../result/copula200402.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2004)
+(4426 observations deleted)
+file ../result/copula200403.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2004)
+(4504 observations deleted)
+file ../result/copula200404.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2004)
+(4388 observations deleted)
+file ../result/copula200405.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2004)
+(4384 observations deleted)
+file ../result/copula200406.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2004)
+(4441 observations deleted)
+file ../result/copula200407.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2004)
+(4654 observations deleted)
+file ../result/copula200408.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2004)
+(4560 observations deleted)
+file ../result/copula200409.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2004)
+(4380 observations deleted)
+file ../result/copula200410.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2004)
+(4877 observations deleted)
+file ../result/copula200411.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2004)
+(4977 observations deleted)
+file ../result/copula200412.dta saved
+
+. copula2 2005
+(CEPR ORG Extract, Version 1.7.0, 2005)
+(5132 observations deleted)
+file ../result/copula200501.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2005)
+(4883 observations deleted)
+file ../result/copula200502.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2005)
+(4830 observations deleted)
+file ../result/copula200503.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2005)
+(4978 observations deleted)
+file ../result/copula200504.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2005)
+(4935 observations deleted)
+file ../result/copula200505.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2005)
+(5032 observations deleted)
+file ../result/copula200506.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2005)
+(4939 observations deleted)
+file ../result/copula200507.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2005)
+(4962 observations deleted)
+file ../result/copula200508.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2005)
+(5017 observations deleted)
+file ../result/copula200509.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2005)
+(5022 observations deleted)
+file ../result/copula200510.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2005)
+(4856 observations deleted)
+file ../result/copula200511.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2005)
+(4963 observations deleted)
+file ../result/copula200512.dta saved
+
+. copula2 2006
+(CEPR ORG Extract, Version 1.7.0, 2006)
+(5039 observations deleted)
+file ../result/copula200601.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2006)
+(4796 observations deleted)
+file ../result/copula200602.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2006)
+(4878 observations deleted)
+file ../result/copula200603.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2006)
+(4866 observations deleted)
+file ../result/copula200604.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2006)
+(4941 observations deleted)
+file ../result/copula200605.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2006)
+(4966 observations deleted)
+file ../result/copula200606.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2006)
+(4822 observations deleted)
+file ../result/copula200607.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2006)
+(4989 observations deleted)
+file ../result/copula200608.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2006)
+(4947 observations deleted)
+file ../result/copula200609.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2006)
+(4984 observations deleted)
+file ../result/copula200610.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2006)
+(4943 observations deleted)
+file ../result/copula200611.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2006)
+(4878 observations deleted)
+file ../result/copula200612.dta saved
+
+. copula2 2007
+(CEPR ORG Extract, Version 1.7.0, 2007)
+(4955 observations deleted)
+file ../result/copula200701.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2007)
+(5007 observations deleted)
+file ../result/copula200702.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2007)
+(4948 observations deleted)
+file ../result/copula200703.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2007)
+(4997 observations deleted)
+file ../result/copula200704.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2007)
+(4973 observations deleted)
+file ../result/copula200705.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2007)
+(5008 observations deleted)
+file ../result/copula200706.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2007)
+(5219 observations deleted)
+file ../result/copula200707.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2007)
+(5203 observations deleted)
+file ../result/copula200708.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2007)
+(5099 observations deleted)
+file ../result/copula200709.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2007)
+(5038 observations deleted)
+file ../result/copula200710.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2007)
+(4819 observations deleted)
+file ../result/copula200711.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2007)
+(5022 observations deleted)
+file ../result/copula200712.dta saved
+
+. copula2 2008
+(CEPR ORG Extract, Version 1.7.0, 2008)
+(4929 observations deleted)
+file ../result/copula200801.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2008)
+(5004 observations deleted)
+file ../result/copula200802.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2008)
+(5152 observations deleted)
+file ../result/copula200803.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2008)
+(5291 observations deleted)
+file ../result/copula200804.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2008)
+(5181 observations deleted)
+file ../result/copula200805.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2008)
+(5114 observations deleted)
+file ../result/copula200806.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2008)
+(5086 observations deleted)
+file ../result/copula200807.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2008)
+(5294 observations deleted)
+file ../result/copula200808.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2008)
+(5155 observations deleted)
+file ../result/copula200809.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2008)
+(5232 observations deleted)
+file ../result/copula200810.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2008)
+(5300 observations deleted)
+file ../result/copula200811.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2008)
+(5349 observations deleted)
+file ../result/copula200812.dta saved
+
+. copula2 2009
+(CEPR ORG Extract, Version 1.7.0, 2009)
+(5309 observations deleted)
+file ../result/copula200901.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2009)
+(5454 observations deleted)
+file ../result/copula200902.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2009)
+(5256 observations deleted)
+file ../result/copula200903.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2009)
+(5489 observations deleted)
+file ../result/copula200904.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2009)
+(5456 observations deleted)
+file ../result/copula200905.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2009)
+(5568 observations deleted)
+file ../result/copula200906.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2009)
+(5469 observations deleted)
+file ../result/copula200907.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2009)
+(5627 observations deleted)
+file ../result/copula200908.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2009)
+(5431 observations deleted)
+file ../result/copula200909.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2009)
+(5452 observations deleted)
+file ../result/copula200910.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2009)
+(5240 observations deleted)
+file ../result/copula200911.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2009)
+(5322 observations deleted)
+file ../result/copula200912.dta saved
+
+. copula2 2010
+(CEPR ORG Extract, Version 1.7.0, 2010)
+(5428 observations deleted)
+file ../result/copula201001.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2010)
+(5358 observations deleted)
+file ../result/copula201002.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2010)
+(5403 observations deleted)
+file ../result/copula201003.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2010)
+(5287 observations deleted)
+file ../result/copula201004.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2010)
+(5273 observations deleted)
+file ../result/copula201005.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2010)
+(5297 observations deleted)
+file ../result/copula201006.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2010)
+(5242 observations deleted)
+file ../result/copula201007.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2010)
+(5415 observations deleted)
+file ../result/copula201008.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2010)
+(5175 observations deleted)
+file ../result/copula201009.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2010)
+(5484 observations deleted)
+file ../result/copula201010.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2010)
+(5294 observations deleted)
+file ../result/copula201011.dta saved
+(CEPR ORG Extract, Version 1.7.0, 2010)
+(5264 observations deleted)
+file ../result/copula201012.dta saved
+
+. 
+. log close
+      name:  <unnamed>
+       log:  /data/uctprgu/cps/program/log_copula1.log
+  log type:  text
+ closed on:   2 May 2012, 21:01:16
+-----------------------------------------------------------------------------------------------------------

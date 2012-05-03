@@ -10,7 +10,7 @@ set more 1
 log using log_match_edu_ur, text replace
 
 local x = 197601
-while `x' < 201108 {
+while `x' <= 201108 {
 		
   use ../basic_extract/cps`x'.dta, clear
 
@@ -30,7 +30,7 @@ while `x' < 201108 {
   sort lfsEduc
   
   * sum weight for each category
-  replace fweight = 0 if fweight = .
+  replace fweight = 0 if fweight == .
   egen double weight = sum(fweight), by(lfsEduc)
   replace weight = weight / 1000
   if `x' > 199400 { 

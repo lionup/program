@@ -9,41 +9,45 @@ set more 1
 
 log using log_match_ind, text replace
 
-local x = 197601
+local x = 199702
 while `x' <= 201108 {
 
   use ../basic_extract/cps`x', clear
 
   if `x' <= 198212 {
     destring ind, gen(ind70)
-	recode ind70 (29 58 78 267 399 499 599 699 719 767 799 817 899 = -1)
+	recode ind70 (-1 29 58 78 267 399 499 599 699 719 767 799 817 899 = .)
 	sort ind70
-	merge in70 using ind70.dta
+	merge ind70 using ind70.dta
 	tab _merge
+  	drop if _merge == 2 
 	drop ind70 _merge
-	summ in7090
+	summ ind7090
   }
   if `x' <= 199112 & `x' >= 198301 {
 	destring ind, gen(ind80)
-    recode ind80 (131 991 992 = -1) 
+    recode ind80 (-1 131 991 992 = .) 
 	sort ind80
-	merge in80 using ind80.dta
+	merge ind80 using ind80.dta
 	tab _merge
+	drop if _merge == 2 
 	drop ind80 _merge
-	summ in7090
+	summ ind7090
   }
   if `x' >= 199201 & `x' <= 200212  {
+    replace ind = "-1" if ind == "-1-" | ind == "1-1" | ind == "1 1"
 	destring ind, gen(ind90)
-    recode ind90 (131 991 992 = -1) 
+    recode ind90 (-1 131 991 992 = .) 
 	sort ind90
-	merge in90 using ind90.dta
+	merge ind90 using ind90.dta
 	tab _merge
+	drop if _merge == 2 
 	drop ind90 _merge
-	summ in7090
+	summ ind7090
   }
   if `x' >= 200301 {
 	destring ind, gen(ind02)
-    recode ind02 (5591 5592 = 5590) (4285 = 4590) (6672 6675 = 6780) (6692 6695 = 6790) (9670 / 9990 = -1), gen(ind90)
+    recode ind02 (-1 = .) (5591 5592 = 5590) (4285 = 4590) (6672 6675 = 6780) (6692 6695 = 6790) (9670 / 9990 = .), gen(ind90)
     replace ind90 = int(ind90 / 10) if ind90 > 0
 	#delimit ; 
     recode ind90 
@@ -310,10 +314,11 @@ while `x' <= 201108 {
     #delimit cr
 
 	sort ind90
-	merge in90 using ind90.dta
+	merge ind90 using ind90.dta
 	tab _merge
+	drop if _merge == 2 
 	drop ind90 ind02 _merge
-	summ in7090
+	summ ind7090
   }
 
 
