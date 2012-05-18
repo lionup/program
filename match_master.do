@@ -46,6 +46,15 @@ clear
 do match_ind3
 clear
 
+**Generates contour plots of industry employment share by education*
+do match_ind1_graph
+clear
+do match_ind2_graph
+clear
+do match_ind3_graph
+clear
+
+
 
 
 

@@ -26,7 +26,7 @@ while `x' <= 201108 {
 
   * sum weight for each category  
   replace fweight = 0 if fweight == .
-  egen double I = sum(fweight), by (indEduc)
+  egen double I = total(fweight), by (indEduc)
   replace I = I / 1000
   if `x' > 199400 { 
 	replace I = I / 100
@@ -52,16 +52,23 @@ while `x' <= 201108 {
   }
 
   * calculate the rates from the levels
+  gen monthsum = 0
   foreach m of numlist `r(numlist)' { 
     forvalues n = 1/6 {
-      gen i`m'e`n' = I`m'e`n' / (I`m'e1 + I`m'e2 + I`m'e3 + I`m'e4 + I`m'e5 + I`m'e6)
+      replace monthsum = monthsum + I`m'e`n'
     }
   }
-  drop I*
   
   foreach m of numlist `r(numlist)' { 
     forvalues n = 1/6 {
-      label var i`m'e`n' "employment share of education level `n' in industry `m'"
+      gen i`m'e`n' = I`m'e`n' / monthsum
+    }
+  }
+  drop monthsum I* 
+  
+  foreach m of numlist `r(numlist)' { 
+    forvalues n = 1/6 {
+      label var i`m'e`n' "employment share of industry `m' and education `n'"
     }
   }
 
