@@ -1,8 +1,8 @@
----------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
       name:  <unnamed>
        log:  /data/uctprgu/cps/program/log_match_edu_ur.log
   log type:  text
- opened on:   3 May 2012, 00:50:04
+ opened on:  22 May 2012, 22:59:58
 
 . 
 . local x = 197601
@@ -11,8 +11,8 @@
   2.                 
 .   use ../basic_extract/cps`x'.dta, clear
   3. 
-.   * keep only the records at least 16 years old and with no missing value on labor st
-> atus and education 
+.   * keep only the records at least 16 years old and with no missing value on labor status and 
+> education 
 .   keep if age >= 16
   4. 
 .   gen str1 lfs = "E" if status == 1 | status == 2
@@ -22,8 +22,7 @@
   8.   drop if lfs == ""
   9.   drop if educ6c == .
  10. 
-.   * create sorting variable "lfsEduc" categoried by labor force status and education 
->  
+.   * create sorting variable "lfsEduc" categoried by labor force status and education  
 .   tostring educ6c, gen(educ2)
  11.   gen lfsEduc = lfs + educ2
  12.   sort lfsEduc
@@ -9755,5 +9754,5 @@ file ../result/edu_ur.dta saved
       name:  <unnamed>
        log:  /data/uctprgu/cps/program/log_match_edu_ur.log
   log type:  text
- closed on:   3 May 2012, 00:54:16
----------------------------------------------------------------------------------------
+ closed on:  22 May 2012, 23:04:16
+------------------------------------------------------------------------------------------------

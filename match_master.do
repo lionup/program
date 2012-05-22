@@ -46,13 +46,14 @@ clear
 do match_ind3
 clear
 
-**Generates contour plots of industry employment share by education*
-do match_ind1_graph
+**Generates BEA ranked industry employment share by education and the contour plots*
+do rank
 clear
-do match_ind2_graph
+do match_indv
 clear
-do match_ind3_graph
+do match_indv_graph
 clear
+
 
 
 

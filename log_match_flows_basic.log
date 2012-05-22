@@ -1,8 +1,8 @@
--------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
       name:  <unnamed>
        log:  /data/uctprgu/cps/program/log_match_flows_basic.log
   log type:  text
- opened on:   3 May 2012, 00:05:33
+ opened on:  22 May 2012, 22:43:49
 
 . 
 . local x = 197601
@@ -10,26 +10,23 @@
 . while `x' <= 201108 {
   2. 
 .   quietly {
-  3.     if `x' != 197601 & `x' != 197801 & `x' != 198507 & `x' != 
-> 198510 & `x' != 199401 & `x' != 199506 & `x' != 199507 & `x' != 1
-> 99508 & `x' != 199509 {
+  3.     if `x' != 197601 & `x' != 197801 & `x' != 198507 & `x' != 198510 & `x' != 199401 & `x' 
+> != 199506 & `x' != 199507 & `x' != 199508 & `x' != 199509 {
   4. 
 .           use ../basic_extract/merg`x', replace
   5.           
-.           * keep only the records at least 16 years old and with 
-> no missing value on labor status in both months
+.           * keep only the records at least 16 years old and with no missing value on labor sta
+> tus in both months
 .           keep if age >= 16
   6. 
 .           gen str1 lfs0 = "E" if status0 == 1 | status0 == 2
   7.           replace lfs0 = "U" if status0 == 3 
-  8.           replace lfs0 = "I" if status0 == 4 | status0 == 5 | 
-> status0 == 6 | status0 == 7
+  8.           replace lfs0 = "I" if status0 == 4 | status0 == 5 | status0 == 6 | status0 == 7
   9.           replace lfs0 = "U" if status0 == 4 & `x' > 198901
  10.           drop if lfs0 == ""
  11.           gen str1 lfs1 = "E" if status1 == 1 | status1 == 2
  12.           replace lfs1 = "U" if status1 == 3 
- 13.           replace lfs1 = "I" if status1 == 4 | status1 == 5 | 
-> status1 == 6 | status1 == 7
+ 13.           replace lfs1 = "I" if status1 == 4 | status1 == 5 | status1 == 6 | status1 == 7
  14.           replace lfs1 = "U" if status1 == 4 & `x' > 198900
  15.           drop if lfs1 == ""
  16. 
@@ -199,7 +196,6 @@ file ../result/basic.dta saved
 
 . 
 . save ../result/sa_basic.dta, replace
-(note: file ../result/sa_basic.dta not found)
 file ../result/sa_basic.dta saved
 
 . 
@@ -207,5 +203,5 @@ file ../result/sa_basic.dta saved
       name:  <unnamed>
        log:  /data/uctprgu/cps/program/log_match_flows_basic.log
   log type:  text
- closed on:   3 May 2012, 00:08:19
--------------------------------------------------------------------
+ closed on:  22 May 2012, 22:58:43
+------------------------------------------------------------------------------------------------

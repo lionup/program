@@ -1,30 +1,29 @@
--------------------------------------------------------------------
+------------------------------------------------------------------------------------------------
       name:  <unnamed>
        log:  /data/uctprgu/cps/program/log_match_flows_j2j.log
   log type:  text
- opened on:   3 May 2012, 00:12:57
+ opened on:  22 May 2012, 22:58:43
 
 . 
 . local x = 199401
 
 . while `x' <= 201108 {
   2.  quietly{
-  3.   if `x' != 199401 &`x' != 199506 & `x' != 199507 & `x' != 199
-> 508 & `x' != 199509 {
+  3.   if `x' != 199401 &`x' != 199506 & `x' != 199507 & `x' != 199508 & `x' != 199509 {
   4. 
 .         use ../basic_extract/merg`x', replace
   5. 
-.     * keep only the records at least 16 years old and with no mis
-> sing value on labor status and same job question in both months
+.     * keep only the records at least 16 years old and with no missing value on labor status an
+> d same job question in both months
 .         keep if age >= 16
   6. 
 .         gen str1 lfs0 = "E" if status0 == 1 | status0 == 2
-  7.         replace lfs0 = "U" if status0 == 3 | status0 == 4 | st
-> atus0 == 5 | status0 == 6 | status0 == 7
+  7.         replace lfs0 = "U" if status0 == 3 | status0 == 4 | status0 == 5 | status0 == 6 | s
+> tatus0 == 7
   8.         drop if lfs0 == ""
   9.         gen str1 lfs1 = "E" if status1 == 1 | status1 == 2
- 10.         replace lfs1 = "U" if status1 == 3 | status1 == 4 | st
-> atus1 == 5 | status1 == 6 | status1 == 7
+ 10.         replace lfs1 = "U" if status1 == 3 | status1 == 4 | status1 == 5 | status1 == 6 | s
+> tatus1 == 7
  11.         drop if lfs1 == ""
  12. 
 .         gen str2 lfs2 = lfs0 + lfs1
@@ -132,7 +131,6 @@ file ../result/j2j.dta saved
 
 . 
 . save ../result/sa_j2j.dta, replace
-(note: file ../result/sa_j2j.dta not found)
 file ../result/sa_j2j.dta saved
 
 . 
@@ -140,5 +138,5 @@ file ../result/sa_j2j.dta saved
       name:  <unnamed>
        log:  /data/uctprgu/cps/program/log_match_flows_j2j.log
   log type:  text
- closed on:   3 May 2012, 00:14:16
--------------------------------------------------------------------
+ closed on:  22 May 2012, 22:59:58
+------------------------------------------------------------------------------------------------
