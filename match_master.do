@@ -8,14 +8,18 @@
 set more 1
 clear
 
+set more 1
+
 **Exract the data from the raw CPS files
 do match_extract
 clear
 
-**Generat consistent education and industry code 
+**Generat consistent education, industry, and occupation code 
 do match_edu
 clear
 do match_ind
+clear
+do match_occ
 clear
 
 **Match consecutive monthly files when possible
@@ -54,8 +58,93 @@ clear
 do match_indv_graph
 clear
 
+*Generates employment share by industry, occupation, and education*
+do match_ind1_occ1
+clear
+do match_ind1_occ2
+clear
+do match_ind1_occ3
+clear
+
+do match_ind2_occ1
+clear
+do match_ind2_occ2
+clear
+do match_ind2_occ3
+clear
+
+do match_ind3_occ1
+clear
+do match_ind3_occ2
+clear
+do match_ind3_occ3
+clear
+
+do match_indv_occ1
+clear
+do match_indv_occ2
+clear
+do match_indv_occ3
+clear
+
+*Generates transition between industry and occupation pair*
+do match_ind1_occ1_flows
+clear
+do match_ind1_occ2_flows
+clear
+do match_ind1_occ3_flows
+clear
+
+do match_ind2_occ1_flows
+clear
+do match_ind2_occ2_flows
+clear
+do match_ind2_occ3_flows
+clear
+
+do match_ind3_occ1_flows
+clear
+do match_ind3_occ2_flows
+clear
+do match_ind3_occ3_flows
+clear
+
+do match_indv_occ1_flows
+clear
+do match_indv_occ2_flows
+clear
+do match_indv_occ3_flows
+clear
 
 
+*Generates transition between industry and occupation pair by education level*
+do match_ind1_occ1_flows_edu
+clear
+do match_ind1_occ2_flows_edu
+clear
+do match_ind1_occ3_flows_edu
+clear
+
+do match_ind2_occ1_flows_edu
+clear
+do match_ind2_occ2_flows_edu
+clear
+do match_ind2_occ3_flows_edu
+clear
+
+do match_ind3_occ1_flows_edu
+clear
+do match_ind3_occ2_flows_edu
+clear
+do match_ind3_occ3_flows_edu
+clear
+
+do match_indv_occ1_flows_edu
+clear
+do match_indv_occ2_flows_edu
+clear
+do match_indv_occ3_flows_edu
+clear
 
 
 

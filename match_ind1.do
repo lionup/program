@@ -12,7 +12,7 @@ log using log_match_ind1, text replace
 local x = 197601
 while `x' <= 201108 {
   use ../basic_extract/cps`x'.dta, clear
-  * keep only the records at least 16 years old, employed, and with no missing value on education and ind7090 
+  * keep only the records at least 16 years old, employed, and with no missing value on education and mind7090 
   keep if age >= 16
   keep if status == 1 | status == 2
   drop if educ6c == . | mind7090 == .

@@ -29,12 +29,17 @@ rename fweight fweight1
 rename mar mar1
 rename dur dur1
 rename ind ind1
-rename ind7090 ind70901
-rename dind7090 dind70901
-rename mind7090 mind70901
+rename ind7090 ind7090_1
+rename dind7090 dind7090_1
+rename mind7090 mind7090_1
+rename vind7090 vind7090_1
 rename occu occu1
+rename occ1990 occ1990_1
+rename docc1990 docc1990_1
+rename mocc1990 mocc1990_1
 rename lk lk1
 rename class class1
+
 if `second' > 199400 {
 rename samejob samejob1 
   }
@@ -75,10 +80,15 @@ rename fweight fweight0
 rename mar mar0
 rename dur dur0
 rename ind ind0
-rename ind7090 ind70900
-rename dind7090 dind70900
-rename mind7090 mind70900
+rename ind7090 ind7090_0
+rename dind7090 dind7090_0
+rename mind7090 mind7090_0
+rename vind7090 vind7090_0
 rename occu occu0
+rename occ1990 occ1990_0
+rename docc1990 docc1990_0
+rename mocc1990 mocc1990_0
+
 rename lk lk0
 rename class class0
 

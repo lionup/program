@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  /data/uctprgu/cps/program/log_match_ind.log
   log type:  text
- opened on:  22 May 2012, 19:52:04
+ opened on:  29 May 2012, 09:59:58
 
 . 
 . local x = 197601
@@ -8726,5 +8726,5 @@ file ../basic_extract/cps201108.dta saved
       name:  <unnamed>
        log:  /data/uctprgu/cps/program/log_match_ind.log
   log type:  text
- closed on:  22 May 2012, 19:59:09
+ closed on:  29 May 2012, 10:06:48
 ------------------------------------------------------------------------------------------------
