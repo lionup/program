@@ -78,6 +78,7 @@ clear
 do match_ind3_occ2
 clear
 do match_ind3_occ3
+* it may take very very long time, so I suggest to use match_ind3_occ3_s.do instead
 clear
 
 do match_indv_occ1
