@@ -2,7 +2,7 @@
       name:  <unnamed>
        log:  /data/uctprgu/cps/program/log_match_ind.log
   log type:  text
- opened on:  29 May 2012, 09:59:58
+ opened on:   8 Jun 2012, 23:23:25
 
 . 
 . local x = 197601
@@ -74,14 +74,13 @@ delimiter now ;
 > 11 "Finance and insurance"
 > 12 "Real estate, rental, and leasing"
 > 13 "Professional, scientific, and technical services"
-> 14 "Management of companies and enterprises"
-> 15 "Administrative and waste managemether services"
-> 16 "Educational services"
-> 17 "Health care and social assistance"
-> 18 "Arts, entertainment, and recreation"
-> 19 "Accommodation and food services"
-> 20 "Other services, except government"
-> 21 "Government"
+> 14 "Management, Administrative and waste services"
+> 15 "Educational services"
+> 16 "Health care and social assistance"
+> 17 "Arts, entertainment, and recreation"
+> 18 "Accommodation and food services"
+> 19 "Other services, except government"
+> 20 "Government"
 > ;
  47.   #delimit cr
 delimiter now cr
@@ -8726,5 +8725,5 @@ file ../basic_extract/cps201108.dta saved
       name:  <unnamed>
        log:  /data/uctprgu/cps/program/log_match_ind.log
   log type:  text
- closed on:  29 May 2012, 10:06:48
+ closed on:   8 Jun 2012, 23:32:50
 ------------------------------------------------------------------------------------------------

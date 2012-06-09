@@ -8,18 +8,20 @@
 set more 1
 clear
 
-set more 1
-
 **Exract the data from the raw CPS files
 do match_extract
 clear
 
-**Generat consistent education, industry, and occupation code 
+**Generate consistent education, industry, and occupation code 
 do match_edu
 clear
 do match_ind
 clear
 do match_occ
+clear
+
+**Rank vind7090 in cps basic extracts by value added per worker
+do match_rank
 clear
 
 **Match consecutive monthly files when possible
@@ -50,103 +52,30 @@ clear
 do match_ind3
 clear
 
-**Generates BEA ranked industry employment share by education and the contour plots*
-do rank
-clear
+**Generates ranked BEA industry employment share by education and the contour plots*
 do match_indv
 clear
 do match_indv_graph
 clear
 
-*Generates employment share by industry, occupation, and education*
-do match_ind1_occ1
-clear
-do match_ind1_occ2
-clear
-do match_ind1_occ3
-clear
-
-do match_ind2_occ1
-clear
-do match_ind2_occ2
-clear
-do match_ind2_occ3
-clear
-
-do match_ind3_occ1
-clear
-do match_ind3_occ2
-clear
-do match_ind3_occ3
-* it may take very very long time, so I suggest to use match_ind3_occ3_s.do instead
-clear
-
+*Generates employment share by ranked BEA industry, 1-digit occupation, and education*
 do match_indv_occ1
 clear
-do match_indv_occ2
-clear
-do match_indv_occ3
+
+*Generates transition between ranked BEA industry*
+do match_flows_indv
 clear
 
-*Generates transition between industry and occupation pair*
-do match_ind1_occ1_flows
-clear
-do match_ind1_occ2_flows
-clear
-do match_ind1_occ3_flows
+*Generates transition between 1-digit occupation*
+do match_flows_occ1
 clear
 
-do match_ind2_occ1_flows
-clear
-do match_ind2_occ2_flows
-clear
-do match_ind2_occ3_flows
+*Generates transition between ranked BEA industry by education*
+do match_edu_indv
 clear
 
-do match_ind3_occ1_flows
+*Generates transition between 1-digit occupation by education*
+do match_edu_occ1
 clear
-do match_ind3_occ2_flows
-clear
-do match_ind3_occ3_flows
-clear
-
-do match_indv_occ1_flows
-clear
-do match_indv_occ2_flows
-clear
-do match_indv_occ3_flows
-clear
-
-
-*Generates transition between industry and occupation pair by education level*
-do match_ind1_occ1_flows_edu
-clear
-do match_ind1_occ2_flows_edu
-clear
-do match_ind1_occ3_flows_edu
-clear
-
-do match_ind2_occ1_flows_edu
-clear
-do match_ind2_occ2_flows_edu
-clear
-do match_ind2_occ3_flows_edu
-clear
-
-do match_ind3_occ1_flows_edu
-clear
-do match_ind3_occ2_flows_edu
-clear
-do match_ind3_occ3_flows_edu
-clear
-
-do match_indv_occ1_flows_edu
-clear
-do match_indv_occ2_flows_edu
-clear
-do match_indv_occ3_flows_edu
-clear
-
-
 
 

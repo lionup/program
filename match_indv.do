@@ -1,66 +1,26 @@
 *Program: match_indv.do
 *Date 5/April/2012
 
+***********************************************************************************
+* THIS PROGRAM GENERATES MONTHLY RANKED BEA INDUSTRY EMPLOYMENT SHARE BY EDUCATION* 
+***********************************************************************************
 
 set more 1
 
 log using log_match_indv, text replace
 
-use ../result/va_ind_rank.dta
-gen vind7090 = _n
-keep vind7090 mean_rank
-sort vind7090
-
-  * label BEA codes vind7090
-  lab var vind7090 "BEA industry"
-  #delimit ;
-  label define vind7090
-1 "Agriculture, forestry, fishing, and hunting"
-2 "Mining"
-3 "Utilities"
-4 "Construction"
-5 "Manufacturing-Durable goods"
-6 "Manufacturing-Nondurable goods"
-7 "Wholesale trade"
-8 "Retail trade"
-9 "Transportation and warehousing"
-10 "Information"
-11 "Finance and insurance"
-12 "Real estate, rental, and leasing"
-13 "Professional, scientific, and technical services"
-14 "Management of companies and enterprises"
-15 "Administrative and waste managemether services"
-16 "Educational services"
-17 "Health care and social assistance"
-18 "Arts, entertainment, and recreation"
-19 "Accommodation and food services"
-20 "Other services, except government"
-21 "Government"
-;
-  #delimit cr
-  lab val vind7090 vind7090
-
-sort vind7090
-saveold ../result/va_ind_rank_merge.dta
-
-
 local x = 197601
 while `x' <= 201108 {
   use ../basic_extract/cps`x'.dta, clear
   
-  *rank the industry by value added per worker
-  sort vind7090
-  merge vind7090 using ../result/va_ind_rank_merge.dta
-  drop _merge
-  
-  * keep only the records at least 16 years old, employed, and with no missing value on education and mean_rank 
+  * keep only the records at least 16 years old, employed, and with no missing value on education and vind7090 
   keep if age >= 16
   keep if status == 1 | status == 2
-  drop if educ6c == . | mean_rank == .
+  drop if educ6c == . | vind7090 == .
 
   * create sorting variable "indEduc" categoried by industry and education
   tostring educ6c, gen(educ2)
-  tostring mean_rank, gen(ind2)
+  tostring vind7090, gen(ind2)
   replace educ2 = "e" + educ2
   gen str4 indEduc = ind2 + educ2
   sort indEduc
@@ -81,7 +41,7 @@ while `x' <= 201108 {
   reshape wide I, i(date) j(indEduc) string
  
   * some industry and education category do not exist so just give them value 0
-  numlist "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21"
+  numlist "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20"
 
   foreach m of numlist `r(numlist)' { 
     forvalues n = 1/6 {

@@ -4,6 +4,7 @@
 *****************************************************
 * THIS PROGRAM CREATES J2J AND SEASONALLY ADJUST IT *
 *****************************************************
+set more 1
 
 log using log_match_flows_j2j, text replace
 

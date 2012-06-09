@@ -4,7 +4,7 @@
 ***************************************************************
 * THIS PROGRAM CREATES E2U AND U2E AND SEASONALLY ADJUST THEM *
 ***************************************************************
-
+set more 1
 
 log using log_match_flows_basic, text replace
 

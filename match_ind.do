@@ -75,14 +75,13 @@ while `x' <= 201108 {
 11 "Finance and insurance"
 12 "Real estate, rental, and leasing"
 13 "Professional, scientific, and technical services"
-14 "Management of companies and enterprises"
-15 "Administrative and waste managemether services"
-16 "Educational services"
-17 "Health care and social assistance"
-18 "Arts, entertainment, and recreation"
-19 "Accommodation and food services"
-20 "Other services, except government"
-21 "Government"
+14 "Management, Administrative and waste services"
+15 "Educational services"
+16 "Health care and social assistance"
+17 "Arts, entertainment, and recreation"
+18 "Accommodation and food services"
+19 "Other services, except government"
+20 "Government"
 ;
   #delimit cr
   lab val vind7090 vind7090
