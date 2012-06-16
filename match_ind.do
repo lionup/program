@@ -58,35 +58,6 @@ while `x' <= 201108 {
   }
   
   
-  * label BEA codes vind7090
-  lab var vind7090 "BEA industry"
-  #delimit ;
-  label define vind7090
-1 "Agriculture, forestry, fishing, and hunting"
-2 "Mining"
-3 "Utilities"
-4 "Construction"
-5 "Manufacturing-Durable goods"
-6 "Manufacturing-Nondurable goods"
-7 "Wholesale trade"
-8 "Retail trade"
-9 "Transportation and warehousing"
-10 "Information"
-11 "Finance and insurance"
-12 "Real estate, rental, and leasing"
-13 "Professional, scientific, and technical services"
-14 "Management, Administrative and waste services"
-15 "Educational services"
-16 "Health care and social assistance"
-17 "Arts, entertainment, and recreation"
-18 "Accommodation and food services"
-19 "Other services, except government"
-20 "Government"
-;
-  #delimit cr
-  lab val vind7090 vind7090
-
-
   *label consistent three-digit codes ind7090 
   label var ind7090 "consistent three-digit industry"
   #delimit ;

@@ -41,7 +41,7 @@ while `x' <= 201108 {
   reshape wide I, i(date) j(indEduc) string
  
   * some industry and education category do not exist so just give them value 0
-  numlist "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20"
+  numlist "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16"
 
   foreach m of numlist `r(numlist)' { 
     forvalues n = 1/6 {

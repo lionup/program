@@ -20,7 +20,8 @@ clear
 do match_occ
 clear
 
-**Rank vind7090 in cps basic extracts by value added per worker
+**Rank BEA industry code in cps basic extracts by value added per worker
+**Then generates jobs based on ranked BEA industry and 1-digit occupation pair
 do match_rank
 clear
 
@@ -28,54 +29,46 @@ clear
 do match_merge
 clear
 
+***********************************************************************
 **Create E2U, U2E, and J2J, and seasonally adjust them using ratio-to-moving-average
 do match_flows_basic
 clear
 do match_flows_j2j
 clear
 
-**Generates unemployment rate and employment to population ratio by education*
-do match_edu_ur
-clear
-
-**Generates monthly E2U, U2E, and J2J rates by education*
+**Generates monthly E2U, U2E, and J2J rates by education group*
 do match_edu_basic
 clear
 do match_edu_j2j
 clear
 
-**Generates monthly 1,2,3-digit industry employment share by education*
-do match_ind1
-clear
-do match_ind2
-clear
-do match_ind3
+**Generates unemployment rate and employment to population ratio by education group*
+do match_edu_ur
 clear
 
-**Generates ranked BEA industry employment share by education and the contour plots*
+**Generates the labor force share of workers employed in jobs (ranked BEA industry and 1-digit occupation pair) by all workers; and also seperately by education group
+do match_er
+clear
+
+***********************************************************************
+**Generates ranked BEA industry employment share by education group, and plot contour graphs*
 do match_indv
 clear
 do match_indv_graph
 clear
 
-*Generates employment share by ranked BEA industry, 1-digit occupation, and education*
-do match_indv_occ1
+*Generates employment share for each job by all workers and also seperately by education group
+do match_job
+clear
+do match_edu_job
 clear
 
-*Generates transition between ranked BEA industry*
-do match_flows_indv
+*Generates transition rate between jobs by all workers and also seperately by education group*
+do match_flows_job
+clear
+do match_edu_flows_job
 clear
 
-*Generates transition between 1-digit occupation*
-do match_flows_occ1
-clear
 
-*Generates transition between ranked BEA industry by education*
-do match_edu_indv
-clear
-
-*Generates transition between 1-digit occupation by education*
-do match_edu_occ1
-clear
 
 

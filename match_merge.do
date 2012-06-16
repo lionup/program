@@ -29,6 +29,7 @@ rename fweight fweight1
 rename mar mar1
 rename dur dur1
 rename ind ind1
+rename job job1
 rename ind7090 ind7090_1
 rename dind7090 dind7090_1
 rename mind7090 mind7090_1
@@ -80,6 +81,7 @@ rename fweight fweight0
 rename mar mar0
 rename dur dur0
 rename ind ind0
+rename job job0
 rename ind7090 ind7090_0
 rename dind7090 dind7090_0
 rename mind7090 mind7090_0

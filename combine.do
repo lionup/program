@@ -67,7 +67,7 @@ forvalues m = 1/10 {
 saveold ../result/final.dta, replace
 
 
-
+***********************************************************************
 *merge the following series by education levels: unemployment, E2U, U2E, J2J
 clear
 use ../result/edu_ur.dta
@@ -94,6 +94,45 @@ forvalues i = 1/6 {
 
 saveold ../result/edu.dta, replace
 
+***********************************************************************
+* merge labor force share of workers in jobs, employment share for jobs, and transition between jobs
+clear
+set maxvar 32767
+use ../result/er.dta
+label var er "labor force share of workers in jobs"
+
+merge 1:1 `sort' using ../result/job.dta
+drop _merge
+sort `sort'
+
+merge 1:1 `sort' using ../result/flows_job.dta
+drop _merge
+sort `sort'
+compress
+saveold ../result/job_combine.dta, replace
+
+* merge above three series by education group
+clear
+use ../result/edu_er.dta
+label var er "labor force share of workers in jobs"
+
+merge 1:1 year qtr month date edu using ../result/edu_job.dta
+drop _merge
+sort year qtr month date edu 
+
+merge 1:1 year qtr month date edu using ../result/edu_flows_job.dta
+drop _merge
+sort year qtr month date edu 
+compress
+saveold ../result/edu_job_combine.dta, replace
+
+
+erase ../result/job.dta
+erase ../result/flows_job.dta
+erase ../result/edu_job.dta
+erase ../result/edu_flows_job.dta
+erase ../result/er.dta
+erase ../result/edu_er.dta
 
 log close
 
