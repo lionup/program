@@ -48,6 +48,14 @@ while `x' <= 201108 {
   ;
   #delimit cr
   lab val educ6c educ6c
+  
+  
+  gen byte educ2c = 1 if 1 <= educ6c & educ6c <= 3  
+  replace educ2c = 2 if 4 <= educ6c & educ6c <= 6  
+  
+  lab var educ2c "2 categroy education level"
+  lab define educ2c 1 "High school graduate or less" 2 "Some college or more"
+  lab val educ2c educ2c
 
   saveold ../basic_extract/cps`x'.dta, replace
 

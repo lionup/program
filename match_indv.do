@@ -41,9 +41,7 @@ while `x' <= 201108 {
   reshape wide I, i(date) j(indEduc) string
  
   * some industry and education category do not exist so just give them value 0
-  numlist "1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16"
-
-  foreach m of numlist `r(numlist)' { 
+  forvalues m = 1/15 { 
     forvalues n = 1/6 {
       capture confirm variable I`m'e`n'
       if _rc {
@@ -54,20 +52,20 @@ while `x' <= 201108 {
 
   * calculate the rates from the levels
   gen monthsum = 0
-  foreach m of numlist `r(numlist)' { 
+  forvalues m = 1/15 { 
     forvalues n = 1/6 {
       replace monthsum = monthsum + I`m'e`n'
     }
   }
   
-  foreach m of numlist `r(numlist)' { 
+  forvalues m = 1/15 { 
     forvalues n = 1/6 {
       gen i`m'e`n' = I`m'e`n' / monthsum
     }
   }
   drop monthsum I* 
   
-  foreach m of numlist `r(numlist)' { 
+  forvalues m = 1/15 { 
     forvalues n = 1/6 {
       label var i`m'e`n' "employment share of industry `m' and education `n'"
     }
