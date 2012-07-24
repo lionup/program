@@ -30,9 +30,9 @@ while `x' <= 201108 {
 	  replace lfs1 = "U" if status1 == 3 
 	  replace lfs1 = "I" if status1 == 4 | status1 == 5 | status1 == 6 | status1 == 7
 	  replace lfs1 = "U" if status1 == 4 & `x' > 198900
-	  keep if lfs1 == "E" | lfs0 == "U"
+	  keep if lfs1 == "E" | lfs1 == "U"
 	  
-	  * give value 99 to the industry of unemployment
+	  * give value 0 to the job of unemployment
 	  replace job0 = 0 if lfs0 == "U"
 	  replace job1 = 0 if lfs1 == "U"
 	  

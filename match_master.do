@@ -1,4 +1,4 @@
-*Program: match_basic.do
+*Program: match_master.do
 *Date 5/April/2012
 
 *********************************************************************
